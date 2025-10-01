@@ -10,6 +10,8 @@ public class AuthManager : MonoBehaviour
 {
     public InputField idInput;
     public InputField pwInput;
+    public GameObject LoadPanel;
+    public Text playerID;
 
     string userID;
     string userPW;
@@ -25,6 +27,10 @@ public class AuthManager : MonoBehaviour
         {
             await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(id, pw);
             Debug.Log($"Sign up successful! Player ID : {AuthenticationService.Instance.PlayerId}");
+            await CloudSaveManager.LoadPlayerData();
+            playerID.text = AuthenticationService.Instance.PlayerId;
+            LoadPanel.SetActive(true);
+            UGSTest_JS.instance.AfterLogIn();
         }
         catch(AuthenticationException ex)
         {
@@ -39,12 +45,16 @@ public class AuthManager : MonoBehaviour
         SignUp(userID, userPW);
     }
 
-    async Task LogIn(string id, string pw)
+    public async Task LogIn(string id, string pw)
     {
         try
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(id, pw);
             Debug.Log($"Log in successful! Player ID : {AuthenticationService.Instance.PlayerId}");
+            await CloudSaveManager.LoadPlayerData();
+            playerID.text = AuthenticationService.Instance.PlayerId;
+            LoadPanel.SetActive(true);
+            UGSTest_JS.instance.AfterLogIn();
         }
         catch (AuthenticationException ex)
         {
