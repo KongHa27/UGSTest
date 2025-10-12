@@ -12,53 +12,133 @@ public class EnemyAITest : MonoBehaviour
 
     public EnemyState curState;
 
-    NavMeshAgent agent;
-    Transform target;
+    NavMeshAgent _agent;
+    Transform _target;
 
     //Patrol
-    public float patrolRadius = 10;
-    public float patrolWaitTime = 5;
-    float waitTimer;
-    Vector3 patrolPoint;
-    bool ispatrolPointSet = false;
+    public float patrolRadius = 3;
+    public float patrolWaitTime = 1;
+    float _waitTimer;
 
     //Detection
     public float detectionRange = 15f;
     public LayerMask playerLayerMask;
+    bool _targetInDetectionRange = false;
 
     //Attack
     public float attackCool = 2f;
-    public float attackRange = 2f;
-    bool isAlreadyAttacked = false;
+    public float attackRange = 1f;
+    bool _targetInAttackRange = false;
+    bool _isAttacked = false;
 
     private void Awake()
     {
+        _agent = GetComponent<NavMeshAgent>();
+        _target = GameObject.FindGameObjectWithTag("Player").transform;
+
         curState = EnemyState.Patrol;
     }
 
     void Update()
     {
+        CheckTarget();
 
+        switch (curState)
+        {
+            case EnemyState.Patrol:
+                Patrolling();
+                break;
+
+            case EnemyState.Chase:
+                Chasing();
+                break;
+
+            case EnemyState.Attack:
+                Attacking();
+                break;
+
+            default:
+                break;
+        }
     }
 
-    void CheckTransition()
+    void CheckTarget()
     {
-        float distance = Vector3.Distance(transform.position, target.position);
+        _targetInDetectionRange = Physics.CheckSphere(transform.position, detectionRange, playerLayerMask);
+        _targetInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayerMask);
 
-        if (distance <= attackRange)
+        if (!_targetInDetectionRange && !_targetInAttackRange)
+        {
+            curState = EnemyState.Patrol;
+        }
+        else if (_targetInDetectionRange && !_targetInAttackRange)
+        {
+            curState = EnemyState.Chase;
+        }
+        else if (_targetInDetectionRange && _targetInAttackRange)
         {
             curState = EnemyState.Attack;
         }
-        else if (distance <= detectionRange)
+    }
+
+    void Patrolling()
+    {
+        if (!_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance)
         {
-             curState = EnemyState.Chase;
-        }
-        else
-        {
-            if (curState == EnemyState.Chase || curState == EnemyState.Attack)
+            _waitTimer += Time.deltaTime;
+            if (_waitTimer >= patrolWaitTime)
             {
-                curState = EnemyState.Patrol;
+                SetPatrolPoint();
+                _waitTimer = 0f;
             }
         }
+    }
+
+    void SetPatrolPoint()
+    {
+        float ranX = Random.Range(-patrolRadius, patrolRadius);
+        float ranZ = Random.Range(-patrolRadius, patrolRadius);
+
+        Vector3 ranPoint = new Vector3(transform.position.x + ranX, transform.position.y, transform.position.z + ranZ);
+
+        if (NavMesh.SamplePosition(ranPoint, out NavMeshHit hit, patrolRadius, NavMesh.AllAreas))
+        {
+            _agent.SetDestination(hit.position);
+        }
+    }
+
+    void Chasing()
+    {
+        _agent.SetDestination(_target.position);
+    }
+
+    void Attacking()
+    {
+        _agent.SetDestination(transform.position);
+        transform.LookAt(_target);
+
+        if (!_isAttacked)
+        {
+            Debug.Log("Enemy Attacks :: " + _target.name);
+            _isAttacked = true;
+            Invoke(nameof(ResetAttack), attackCool);
+        }
+    }
+
+    void ResetAttack()
+    {
+        _isAttacked = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, patrolRadius);
     }
 }

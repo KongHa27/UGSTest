@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyGroup : MonoBehaviour
+public class PlayerStatus : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -12,5 +12,10 @@ public class EnemyGroup : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ApplyBurn(float totalDamage, float duration, float tickInterval)
+    {
+        Debug.Log($"화상 시작! {duration}초 동안 총 {totalDamage}의 피해를 입습니다.");
     }
 }

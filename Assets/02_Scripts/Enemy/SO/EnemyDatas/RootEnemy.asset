@@ -10,20 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ba03f3a7d3a176409c3c8f8913e59cf, type: 3}
-  m_Name: EnemyData
+  m_Name: RootEnemy
   m_EditorClassIdentifier: 
-  _name: "\uC784\uC2DC"
+  _name: RootEnemy
+  _prefab: {fileID: 1086406898281672714, guid: 985c6d91d284545468a517678cce7e47, type: 3}
   _maxHp: 100
   _moveSpeed: 5
   _atk: 5
   _detectionRange: 15
+  _patrolRadius: 3
+  _patrolWaitTime: 1
   _attackRange: 2
   _attackCoolTime: 3
   _rewardExp: 5
   _rewardGold: 5
-  _canBeEpic: 0
-  _epicChance: 0
+  _canBeEpic: 1
+  _epicChance: 0.5
   _epicHpMultiplier: 2
   _epicAtkMultiplier: 2
   _epicExpMultirlier: 2
   _epicGoldMultirlier: 2
+  _specialAttackCoolTime: 2
+  _specialAttack: {fileID: 11400000, guid: bf5c5e3dfe6cbbd4ab80b28ccb91b1e4, type: 2}
