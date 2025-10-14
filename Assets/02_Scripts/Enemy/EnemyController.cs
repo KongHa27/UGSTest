@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour, IDamageable, IAttackable
 {
-    [Header("----- ÄÄÆ÷³ÍÆ® -----")]
+    [Header("----- ì»´í¬ë„ŒíŠ¸ -----")]
     [SerializeField] EnemyData _data;
     [SerializeField] NavMeshAgent _agent;
     [SerializeField] Transform _target;
@@ -19,20 +19,21 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
     [SerializeField] EnemyState _curState = EnemyState.Patrol;
     public EnemyState CurState => _curState;
 
-    [Header("----- ÀüÅõ -----")]
+    [Header("----- ì „íˆ¬ -----")]
     [SerializeField] LayerMask _playerLayerMask;
+    [SerializeField] SpecialAttackBase _specialAttack;
 
-    // ÇöÀç ¼ÓÇÑ ±×·ì //
-    EnemyGroup _group;
+    // í˜„ì¬ ì†í•œ ê·¸ë£¹ //
+    [SerializeField] EnemyGroup _group;
 
-    // ÇöÀç »óÅÂ ½ºÅÈ //
+    // í˜„ì¬ ìƒíƒœ ìŠ¤íƒ¯ //
     bool _isEpic = false;
     float _curHp;
     float _atk;
     float _attackRange;
     float _patrolRadius;
 
-    // Å¸ÀÌ¸Ó ¹× ÄğÅ¸ÀÓ //
+    // íƒ€ì´ë¨¸ ë° ì¿¨íƒ€ì„ //
     float _patrolWaitTimer;
     float _lastAttackTime;
     float _lastSpecialAttackTime;
@@ -43,18 +44,12 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
     }
 
     /// <summary>
-    /// Enemy¸¦ ÃÊ±âÈ­ÇÏ´Â ÇÔ¼ö
+    /// Enemyë¥¼ ì´ˆê¸°í™”í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <param name="canBeEpic"></param>
-    public void Initialize(bool canBeEpic)
+    public void Initialize(bool canBeEpic, SpecialAttackBase specialAttack)
     {
         _group = transform.parent.GetComponent<EnemyGroup>();
-
-        //µğ¹ö±ë
-        if (_group != null)
-            Debug.Log("±×·ì ¹èÁ¤ ¼º°ø");
-        else
-            Debug.LogError("±×·ìÀ» Ã£Áö ¸øÇÔ");
 
         if (canBeEpic)
         {
@@ -71,7 +66,15 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
         if (_isEpic)
         {
             transform.localScale *= 1.2f;
-            Debug.Log($"{name}ÀÌ(°¡) ¿¡ÇÈ ¸ó½ºÅÍ·Î µîÀå!");
+            Debug.Log($"{name}ì´(ê°€) ì—í”½ ëª¬ìŠ¤í„°ë¡œ ë“±ì¥!");
+            
+            _specialAttack = specialAttack;
+
+            if (_specialAttack != null && _specialAttack.EpicEffect != null)
+            {
+                GameObject epicEffect = Instantiate(_specialAttack.EpicEffect, transform);
+                epicEffect.transform.position = Vector3.zero;
+            }
         }
 
         _agent.speed = _data.MoveSpeed;
@@ -102,33 +105,29 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
         }
     }
 
-    // »óÅÂ º° Çàµ¿ ÇÔ¼ö //
+    // ìƒíƒœ ë³„ í–‰ë™ í•¨ìˆ˜ //
 
     /// <summary>
-    /// ¹èÈ¸ »óÅÂÀÏ ¶§ ½ÇÇàµÇ´Â ÇÔ¼ö
+    /// ë°°íšŒ ìƒíƒœì¼ ë•Œ ì‹¤í–‰ë˜ëŠ” í•¨ìˆ˜
     /// </summary>
     void UpdatePatrolState()
     {
-        //°¨Áö ¹üÀ§ ³»¿¡¼­ ÇÃ·¹ÀÌ¾î¸¦ Ã£´Â´Ù.
+        //ê°ì§€ ë²”ìœ„ ë‚´ì—ì„œ í”Œë ˆì´ì–´ë¥¼ ì°¾ëŠ”ë‹¤.
         Collider[] colliders = Physics.OverlapSphere(transform.position, _data.DetectionRange, _playerLayerMask);
 
-        //ÇÃ·¹ÀÌ¾î¸¦ Ã£À¸¸é
+        //í”Œë ˆì´ì–´ë¥¼ ì°¾ìœ¼ë©´
         if (colliders.Length > 0)
         {
-            //±×·ì¿¡ Å¸°Ù °øÀ¯
+            //í”Œë ˆì´ì–´ë¥¼ íƒ€ê²Ÿìœ¼ë¡œ ì„¤ì •
+            _target = colliders[0].transform;
+
+            //ìƒíƒœë¥¼ ì¶”ê²© ìƒíƒœë¡œ ë°”ê¾¸ê¸°
+            ChangeState(EnemyState.Chase);
+
+            //ê·¸ë£¹ì— íƒ€ê²Ÿ ê³µìœ 
             if (_group != null)
             {
-                _group.ShareAggro(colliders[0].transform);
-            }
-            //±×·ìÀÌ ¾ø´Ù¸é ½º½º·Î
-            else
-            {
-                //ÇÃ·¹ÀÌ¾î¸¦ Å¸°ÙÀ¸·Î ¼³Á¤
-                _target = colliders[0].transform;
-
-                //»óÅÂ¸¦ Ãß°İ »óÅÂ·Î ¹Ù²Ù±â
-                ChangeState(EnemyState.Chase);
-
+                _group.ShareAggro(_target);
             }
 
             return;
@@ -146,18 +145,20 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
     }
 
     /// <summary>
-    /// ±×·ìÀÇ ¸í·ÉÀ» ¹Ş¾Æ Ãß°İÀ» ½ÃÀÛÇÏ´Â ÇÔ¼ö
+    /// ê·¸ë£¹ì˜ ëª…ë ¹ì„ ë°›ì•„ ì¶”ê²©ì„ ì‹œì‘í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <param name="target"></param>
     public void ActivateChase(Transform target)
     {
-        _target = target;
-        ChangeState(EnemyState.Chase);
-        _agent.SetDestination(_target.position);
+        if (_curState == EnemyState.Patrol)
+        {
+            _target = target;
+            ChangeState(EnemyState.Chase);
+        }
     }
 
     /// <summary>
-    /// ¹èÈ¸ ÁöÁ¡À» »õ·Î ¼³Á¤ÇÏ´Â ÇÔ¼ö
+    /// ë°°íšŒ ì§€ì ì„ ìƒˆë¡œ ì„¤ì •í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     void SetNewPatrolPoint()
     {
@@ -170,44 +171,45 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
     }
 
     /// <summary>
-    /// Ãß°İ »óÅÂÀÏ ¶§ ½ÇÇàµÇ´Â ÇÔ¼ö
+    /// ì¶”ê²© ìƒíƒœì¼ ë•Œ ì‹¤í–‰ë˜ëŠ” í•¨ìˆ˜
     /// </summary>
     void UpdateChaseState()
     {
-        //Å¸°ÙÀÌ nullÀÌ¸é
+        //íƒ€ê²Ÿì´ nullì´ë©´
         if (_target == null)
         {
-            //»óÅÂ¸¦ ¹èÈ¸ »óÅÂ·Î ¹Ù²Ù°í ¸®ÅÏ
+            //ìƒíƒœë¥¼ ë°°íšŒ ìƒíƒœë¡œ ë°”ê¾¸ê³  ë¦¬í„´
             ChangeState(EnemyState.Patrol);
             return;
         }
 
-        //ÀÚ½Å°ú Å¸°Ù »çÀÌÀÇ °Å¸® ±¸ÇÏ±â
-        float distance = Vector3.Distance(transform.position, _target.position);
-
-        //ÀÚ½Å°ú Å¸°Ù »çÀÌÀÇ °Å¸®°¡ °¨Áö ¹üÀ§º¸´Ù Å©´Ù¸é
-        if (distance > _data.DetectionRange)
-        {
-            Debug.Log("Å¸°ÙÀ» Ã£À» ¼ö ¾øÀ½. Ãß°İ ÁßÁö");
-            
-            //»óÅÂ¸¦ ¹èÈ¸ »óÅÂ·Î ¹Ù²Ù°í ¸®ÅÏ
-            ChangeState(EnemyState.Patrol);
-            return;
-        }
-
-        //Å¸°ÙÀ» µû¶ó°¡µµ·Ï ¼³Á¤
+        //íƒ€ê²Ÿì„ ë”°ë¼ê°€ë„ë¡ ì„¤ì •
+        _agent.isStopped = false;
         _agent.SetDestination(_target.position);
 
-        //ÀÚ½Å°ú Å¸°Ù »çÀÌÀÇ °Å¸®°¡ °ø°İ ¹üÀ§º¸´Ù ÀÛ´Ù¸é
+        //ìì‹ ê³¼ íƒ€ê²Ÿ ì‚¬ì´ì˜ ê±°ë¦¬ êµ¬í•˜ê¸°
+        float distance = Vector3.Distance(transform.position, _target.position);
+
+        //ìì‹ ê³¼ íƒ€ê²Ÿ ì‚¬ì´ì˜ ê±°ë¦¬ê°€ ê°ì§€ ë²”ìœ„ë³´ë‹¤ í¬ë‹¤ë©´
+        if (distance > _data.ChaseDistance)
+        {
+            Debug.Log("íƒ€ê²Ÿì„ ì°¾ì„ ìˆ˜ ì—†ìŒ. ì¶”ê²© ì¤‘ì§€");
+            
+            //ìƒíƒœë¥¼ ë°°íšŒ ìƒíƒœë¡œ ë°”ê¾¸ê³  ë¦¬í„´
+            ChangeState(EnemyState.Patrol);
+            return;
+        }
+
+        //ìì‹ ê³¼ íƒ€ê²Ÿ ì‚¬ì´ì˜ ê±°ë¦¬ê°€ ê³µê²© ë²”ìœ„ë³´ë‹¤ ì‘ë‹¤ë©´
         if (distance <= _attackRange)
         {
-            //»óÅÂ¸¦ °ø°İ »óÅÂ·Î º¯°æ
+            //ìƒíƒœë¥¼ ê³µê²© ìƒíƒœë¡œ ë³€ê²½
             ChangeState(EnemyState.Attack);
         }
     }
 
     /// <summary>
-    /// °ø°İ »óÅÂÀÏ ¶§ ½ÇÇàµÇ´Â ÇÔ¼ö
+    /// ê³µê²© ìƒíƒœì¼ ë•Œ ì‹¤í–‰ë˜ëŠ” í•¨ìˆ˜
     /// </summary>
     void UpdateAttackState()
     {
@@ -217,60 +219,62 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
             return;
         }
 
-        //Å¸°ÙÀ» ¹Ù¶óº¸µµ·Ï ¼³Á¤
+        //íƒ€ê²Ÿì„ ë°”ë¼ë³´ë„ë¡ ì„¤ì •
         transform.LookAt(_target);
-        //À§Ä¡´Â Á¦ÀÚ¸® °íÁ¤
+        //ìœ„ì¹˜ëŠ” ì œìë¦¬ ê³ ì •
         _agent.SetDestination(transform.position);
+        _agent.isStopped = true;
 
-        //ÀÚ½Å°ú Å¸°Ù »çÀÌÀÇ °Å¸® ±¸ÇÏ±â
+        //ìì‹ ê³¼ íƒ€ê²Ÿ ì‚¬ì´ì˜ ê±°ë¦¬ êµ¬í•˜ê¸°
         float distance = Vector3.Distance(transform.position, _target.position);
         
-        //¸¸¾à ÀÚ½Å°ú Å¸°Ù »çÀÌÀÇ °Å¸®°¡ °ø°İ ¹üÀ§º¸´Ù Å©´Ù¸é
+        //ë§Œì•½ ìì‹ ê³¼ íƒ€ê²Ÿ ì‚¬ì´ì˜ ê±°ë¦¬ê°€ ê³µê²© ë²”ìœ„ë³´ë‹¤ í¬ë‹¤ë©´
         if (distance > _attackRange)
         {
-            //»óÅÂ¸¦ Ãß°İ »óÅÂ·Î ¹Ù²Ù°í ¸®ÅÏ
+            //ìƒíƒœë¥¼ ì¶”ê²© ìƒíƒœë¡œ ë°”ê¾¸ê³  ë¦¬í„´
             ChangeState(EnemyState.Chase);
             return;
         }
 
-        //¸¸¾à ¿¡ÇÈ ¸ó½ºÅÍÀÌ°í, Æ¯¼ö °ø°İ ÄğÅ¸ÀÓÀÌ ´Ù Ã¡´Ù¸é
-        if (_isEpic && _data.SpecialAttack != null && Time.time >= _lastSpecialAttackTime + _data.SpecialAttackCoolTime)
+        //ë§Œì•½ ì—í”½ ëª¬ìŠ¤í„°ì´ê³ , íŠ¹ìˆ˜ ê³µê²© ì¿¨íƒ€ì„ì´ ë‹¤ ì°¼ë‹¤ë©´
+        if (_isEpic && _specialAttack != null && Time.time >= _lastSpecialAttackTime + _data.SpecialAttackCoolTime)
         {
-            //Æ¯¼ö °ø°İ ½ÇÇà
+            //íŠ¹ìˆ˜ ê³µê²© ì‹¤í–‰
             PerformSpecialAttack();
         }
-        //°ø°İ ÄğÅ¸ÀÓÀÌ ´Ù Ã¡´Ù¸é
+        //ê³µê²© ì¿¨íƒ€ì„ì´ ë‹¤ ì°¼ë‹¤ë©´
         else if (Time.time >= _lastAttackTime + _data.AttackCoolTime)
         {
-            //ÀÏ¹İ °ø°İ ½ÇÇà
+            //ì¼ë°˜ ê³µê²© ì‹¤í–‰
             PerformBasicAttack();
         }
     }
 
     /// <summary>
-    /// Æ¯¼ö °ø°İÀ» ½ÇÇàÇÏ´Â ÇÔ¼ö
+    /// íŠ¹ìˆ˜ ê³µê²©ì„ ì‹¤í–‰í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     void PerformSpecialAttack()
     {
         _lastSpecialAttackTime = Time.time;
         //_animator.SetTrigger("SpecialAttack");
-        _data.SpecialAttack.Execute(transform, _target);
+
+        _specialAttack.Execute(transform, _target);
     }
 
     /// <summary>
-    /// ÀÏ¹İ °ø°İÀ» ½ÇÇàÇÏ´Â ÇÔ¼ö
+    /// ì¼ë°˜ ê³µê²©ì„ ì‹¤í–‰í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     void PerformBasicAttack()
     {
         _lastAttackTime = Time.time;
         //_animator.SetTrigger("Attack");
-        Debug.Log("°ø°İ!! µ¥¹ÌÁö : " + _atk);
+        Debug.Log("ê³µê²©!! ë°ë¯¸ì§€ : " + _atk);
 
-        //Player ½ºÅ©¸³Æ®¿¡¼­ Ã³¸®?
+        //Player ìŠ¤í¬ë¦½íŠ¸ì—ì„œ ì²˜ë¦¬?
     }
 
     /// <summary>
-    /// »óÅÂ¸¦ ¹Ù²Ù´Â ÇÔ¼ö
+    /// ìƒíƒœë¥¼ ë°”ê¾¸ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <param name="state"></param>
     void ChangeState(EnemyState state)
@@ -278,17 +282,17 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
         if (_curState == state) return;
         _curState = state;
 
-        //»óÅÂ°¡ ¹èÈ¸ »óÅÂ·Î º¯°æµÇ¸é
+        //ìƒíƒœê°€ ë°°íšŒ ìƒíƒœë¡œ ë³€ê²½ë˜ë©´
         if (_curState == EnemyState.Patrol)
         {
-            //Å¸°ÙÀ» ºñ¿ì°í
+            //íƒ€ê²Ÿì„ ë¹„ìš°ê³ 
             _target = null;
-            //³×ÀÌ°ÔÀÌ¼Ç °æ·Î ÃÊ±âÈ­
+            //ë„¤ì´ê²Œì´ì…˜ ê²½ë¡œ ì´ˆê¸°í™”
             _agent.ResetPath();
         }
     }
 
-    // ÀÎÅÍÆäÀÌ½º ±¸Çö //
+    // ì¸í„°í˜ì´ìŠ¤ êµ¬í˜„ //
     public void Attack(IDamageable damageable)
     {
         PerformBasicAttack();
@@ -296,13 +300,13 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
 
     public void TakeDamege(float damage)
     {
-        //ÇöÀç »óÅÂ°¡ Á×À½ »óÅÂ¸é ¸®ÅÏ
+        //í˜„ì¬ ìƒíƒœê°€ ì£½ìŒ ìƒíƒœë©´ ë¦¬í„´
         if (_curState == EnemyState.Dead) return;
 
-        //ÇöÀç Ã¼·ÂÀ» µ¥¹ÌÁö ¸¸Å­ °¨¼Ò
+        //í˜„ì¬ ì²´ë ¥ì„ ë°ë¯¸ì§€ ë§Œí¼ ê°ì†Œ
         _curHp -= damage;
 
-        //ÇöÀç Ã¼·ÂÀÌ 0º¸´Ù ÀÛ°Å³ª °°À¸¸é
+        //í˜„ì¬ ì²´ë ¥ì´ 0ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ìœ¼ë©´
         if (_curHp <= 0)
         {
             Dead();
@@ -311,17 +315,17 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
 
     public void Dead()
     {
-        //ÇöÀç »óÅÂ°¡ Á×À½ »óÅÂ¸é ¸®ÅÏ
+        //í˜„ì¬ ìƒíƒœê°€ ì£½ìŒ ìƒíƒœë©´ ë¦¬í„´
         if (_curState == EnemyState.Dead) return;
 
-        //»óÅÂ¸¦ Á×À½ »óÅÂ·Î ¹Ù²Ù±â
+        //ìƒíƒœë¥¼ ì£½ìŒ ìƒíƒœë¡œ ë°”ê¾¸ê¸°
         ChangeState(EnemyState.Dead);
-        //³×ºñ°ÔÀÌ¼Ç ÁßÁö
+        //ë„¤ë¹„ê²Œì´ì…˜ ì¤‘ì§€
         _agent.isStopped = true;
-        //Äİ¶óÀÌ´õ ºñÈ°¼ºÈ­
+        //ì½œë¼ì´ë” ë¹„í™œì„±í™”
         GetComponent<Collider>().enabled = false;
 
-        //3ÃÊ ÈÄ ¿ÀºêÁ§Æ® ÆÄ±«
+        //3ì´ˆ í›„ ì˜¤ë¸Œì íŠ¸ íŒŒê´´
         Destroy(gameObject, 3f);
     }
 

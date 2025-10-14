@@ -3,59 +3,38 @@ using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] EnemySpawnData _data;
-    [SerializeField] float _spawnRadius = 5f;
+    [SerializeField] EnemySpawnData _data;      //ìŠ¤í° ë°ì´í„°
+    [SerializeField] float _spawnRadius = 10f;  //ê° ì ë“¤ ì‚¬ì´ì˜ ê°„ê²©
 
-    bool _hasSpawned = false;
+    [Header("----- íŠ¹ìˆ˜ ê³µê²© ë¦¬ìŠ¤íŠ¸ -----")]
+    [SerializeField] List<SpecialAttackBase> _specialAttackList;
 
+    private GameObject _group;
     bool _isActive = false;
-    SphereCollider _triggerCollider;
-    float _colliderRadius;
-
-    private void Awake()
-    {
-        _triggerCollider = GetComponent<SphereCollider>();
-        if (_triggerCollider)
-        {
-            //½ÃÀÛµÇ¸é Æ®¸®°Å Äİ¶óÀÌ´õ È°¼ºÈ­
-            _triggerCollider.enabled = false;
-        }
-
-        _colliderRadius = _triggerCollider.radius;
-    }
 
     private void Start()
     {
-        if (SpawnerManager.instance != null)
+        if (SpawnerManager.Instance != null)
         {
-            SpawnerManager.instance.RegisterSpawner(this);
+            SpawnerManager.Instance.RegisterSpawner(this);
         }
+
+        CreateEnemyGroup();
     }
 
-    private void OnTriggerEnter(Collider other)
+    /// <summary>
+    /// ëª¬ìŠ¤í„° ê·¸ë£¹ê³¼ ëª¬ìŠ¤í„°ë“¤ì„ ë¯¸ë¦¬ ìƒì„±í•˜ê³  ë¹„í™œì„±í™”í•˜ëŠ” í•¨ìˆ˜
+    /// </summary>
+    void CreateEnemyGroup()
     {
-        if (other.CompareTag("Player") && !_hasSpawned)
-        {
-            SpawnEnemies();
-        }
-    }
+        //ê·¸ë£¹ ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±í•˜ê³  ìœ„ì¹˜ ì„¤ì •
+        _group = new GameObject($"{_data.name}_Group");
+        _group.transform.SetParent(this.transform);
+        _group.transform.localPosition = Vector3.zero;
+        //Enemygroup ì»´í¬ë„ŒíŠ¸ ì¶”ê°€
+        _group.AddComponent<EnemyGroup>();
 
-    void SpawnEnemies()
-    {
-        _hasSpawned = true;
-
-        if (_triggerCollider)
-        {
-            _triggerCollider.enabled = false;
-        }
-
-        //±×·ìÀÇ ºÎ¸ğ°¡ µÉ ºó °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ »ı¼ºÇÏ°í
-        GameObject groupGO = new GameObject($"{_data.name}_Group");
-        groupGO.transform.position = transform.position;
-        //Enemygroup ÄÄÆ÷³ÍÆ® Ãß°¡
-        groupGO.AddComponent<EnemyGroup>();
-
-        //½ºÆù µ¥ÀÌÅÍ¸¦ ±â¹İÀ¸·Î ½ºÆùÇÒ ¸ó½ºÅÍ ¸ñ·Ï ÁØºñ
+        //ìŠ¤í° ë°ì´í„°ë¥¼ ê¸°ë°˜ìœ¼ë¡œ ìŠ¤í°í•  ëª¬ìŠ¤í„° ëª©ë¡ ì¤€ë¹„
         List<EnemyData> enemiesToSpawn = new List<EnemyData>();
         foreach (var info in _data.spawnList)
         {
@@ -65,53 +44,50 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        //¸ñ·Ï¿¡¼­ ·£´ıÀ¸·Î ÇÑ ¸íÀ» ¿¡ÇÈ ÈÄº¸·Î ¼±Á¤
+        //ëª©ë¡ì—ì„œ ëœë¤ìœ¼ë¡œ í•œ ëª…ì„ ì—í”½ í›„ë³´ë¡œ ì„ ì •
         int epicCandidateIndex = -1;
         if (enemiesToSpawn.Count > 0)
         {
             epicCandidateIndex = Random.Range(0, enemiesToSpawn.Count);
         }
 
-        //¸ó½ºÅÍ ½ÇÁ¦ »ı¼º
+        //ëª¬ìŠ¤í„° ì‹¤ì œ ìƒì„±
         for (int i = 0; i < enemiesToSpawn.Count; i++)
         {
             EnemyData data = enemiesToSpawn[i];
 
-            //À§Ä¡ ¼³Á¤
+            //ìœ„ì¹˜ ì„¤ì •
             Vector3 ranPos = transform.position + Random.insideUnitSphere * _spawnRadius;
             ranPos.y = transform.position.y;
 
-            //ÇÁ¸®ÆÕÀ» »ı¼ºÇÏ°í, ±×·ì ¿ÀºêÁ§Æ®ÀÇ ÀÚ½ÄÀ¸·Î ¸¸µé±â
+            //í”„ë¦¬íŒ¹ì„ ìƒì„±í•˜ê³ , ê·¸ë£¹ ì˜¤ë¸Œì íŠ¸ì˜ ìì‹ìœ¼ë¡œ ë§Œë“¤ê¸°
             GameObject enemy = Instantiate(data.Prefab, ranPos, Quaternion.identity);
-            enemy.transform.SetParent(groupGO.transform);
+            enemy.transform.SetParent(_group.transform);
 
-            //¿¡ÇÈ ÈÄº¸ ¿©ºÎ¸¦ ¾Ë·ÁÁÖ°í, Àû ÃÊ±âÈ­
+            //ì—í”½ í›„ë³´ ì—¬ë¶€ë¥¼ ì•Œë ¤ì£¼ê³ , ì  ì´ˆê¸°í™”
             bool isCandidate = (i == epicCandidateIndex);
-            enemy.GetComponent<EnemyController>().Initialize(isCandidate);
+            SpecialAttackBase specialAttack = null;
+
+            if (isCandidate && _specialAttackList.Count > 0)
+            {
+                int ranSA = Random.Range(0, _specialAttackList.Count);
+                specialAttack = _specialAttackList[ranSA];
+            }
+            enemy.GetComponent<EnemyController>().Initialize(isCandidate, specialAttack);
         }
+
+        _group.SetActive(false);
     }
 
-    public void Activate()
+    /// <summary>
+    /// SpawnerManagerì— ì˜í•´ í˜¸ì¶œë˜ì–´ ê·¸ë£¹ì„ í™œì„±í™”í•˜ëŠ” í•¨ìˆ˜
+    /// </summary>
+    public void ActivateGroup()
     {
-        if (!_isActive && !_hasSpawned)
+        if (!_isActive && _group != null)
         {
             _isActive = true;
-            _triggerCollider.enabled = true;
+            _group.SetActive(true);
         }
-    }
-
-    public void Deactivate()
-    {
-        if (_isActive)
-        {
-            _isActive = false;
-            _triggerCollider.enabled = false;
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(transform.position, _colliderRadius);
     }
 }

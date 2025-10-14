@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 public class EnemyGroup : MonoBehaviour
 {
-    List<EnemyController> _enemies = new List<EnemyController>();
+   [SerializeField] List<EnemyController> _enemies = new List<EnemyController>();
     bool _hasAggro = false;
 
     private void Start()
     {
-        //ÀÚ½ÄÀ¸·Î ÀÖ´Â ¸ğµç EnemyController¸¦ Ã£¾Æ ¸®½ºÆ®¿¡ µî·Ï
+        //ìì‹ìœ¼ë¡œ ìˆëŠ” ëª¨ë“  EnemyControllerë¥¼ ì°¾ì•„ ë¦¬ìŠ¤íŠ¸ì— ë“±ë¡
         GetComponentsInChildren<EnemyController>(_enemies);
     }
 
@@ -18,6 +18,7 @@ public class EnemyGroup : MonoBehaviour
 
         bool allMembersPatrolling = true;
 
+        //ëª¨ë“  ë©¤ë²„ë“¤ì´ ìˆœì°° ìƒíƒœì¸ì§€,ì•„ë‹Œì§€ í™•ì¸
         foreach (var enemy in _enemies)
         {
             if (enemy != null && enemy.CurState != EnemyController.EnemyState.Dead)
@@ -30,6 +31,7 @@ public class EnemyGroup : MonoBehaviour
             }
         }
 
+        //ë§Œì•½ ëª¨ë“  ë©¤ë²„ê°€ ìˆœì°° ìƒíƒœë¼ë©´ ê·¸ë£¹ì˜ ì–´ê·¸ë¡œë¥¼ í•´ì œ
         if (allMembersPatrolling)
         {
             _hasAggro = false;
@@ -37,17 +39,17 @@ public class EnemyGroup : MonoBehaviour
     }
 
     /// <summary>
-    /// ±×·ì ÀüÃ¼¿¡ ¾î±×·Î¸¦ °øÀ¯ÇÏ´Â ÇÔ¼ö
+    /// ë©¤ë²„ë¡œë¶€í„° ë³´ê³ ë¥¼ ë°›ì•„ ê·¸ë£¹ ì „ì²´ì— ì–´ê·¸ë¡œë¥¼ ê³µìœ í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <param name="target"></param>
     public void ShareAggro(Transform target)
     {
-        //ÀÌ¹Ì ¾î±×·Î »óÅÂÀÌ¸é ¸®ÅÏ
+        //ì´ë¯¸ ì–´ê·¸ë¡œ ìƒíƒœì´ë©´ ë¦¬í„´
         if (_hasAggro) return;
 
         _hasAggro = true;
-        
-        //¸ğµç ±×·ì Àûµé¿¡°Ô Å¸°ÙÀ» ¾Ë¸®°í Ãß°İ ¸í·ÉÀ» ³»¸²
+
+        //ê·¸ë£¹ ë„¤ ëª¨ë“  ë©¤ë²„ì—ê²Œ íƒ€ê²Ÿì„ ì•Œë¦¬ê³  ì¶”ê²© ëª…ë ¹ì„ ë‚´ë¦¼
         foreach (var enemy in _enemies)
         {
             if (enemy != null && enemy.CurState != EnemyController.EnemyState.Dead)

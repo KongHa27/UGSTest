@@ -3,34 +3,35 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SA_Burn", menuName = "Enemy/Special Attacks/Burn")]
 public class BurnAttack : SpecialAttackBase
 {
-    [Header("----- ¹ß»çÃ¼ ¼³Á¤ -----")]
+    [Header("----- ë°œì‚¬ì²´ ì„¤ì • -----")]
+    [SerializeField] Transform _firePos;
     [SerializeField] GameObject _projectilePrefab;
     [SerializeField] float _projectileSpeed = 15f;
 
-    [Header("----- È­»ó ¼³Á¤ -----")]
-    [SerializeField] float _totalDamage = 50f;  //µé¾î°¥ ÃÑ µ¥¹ÌÁö
-    [SerializeField] float _duration = 5f;      //È­»ó Áö¼Ó ½Ã°£
-    [SerializeField] float _tickInterval = 1f;  //È­»ó ½Ã°£ °£°İ
+    [Header("----- í™”ìƒ ì„¤ì • -----")]
+    [SerializeField] float _totalDamage = 50f;  //ë“¤ì–´ê°ˆ ì´ ë°ë¯¸ì§€
+    [SerializeField] float _duration = 5f;      //í™”ìƒ ì§€ì† ì‹œê°„
+    [SerializeField] float _tickInterval = 1f;  //í™”ìƒ ì‹œê°„ ê°„ê²©
 
     public override void Execute(Transform attacker, Transform target)
     {
-        //Debug.Log($"Æ¯¼ö °ø°İ : È­»ó. ´ë»ó : {target}. {_duration}ÃÊ¿¡ °ÉÃÄ {_totalDamage}¸¸Å­ÀÇ ÇÇÇØ¸¦ ÀÔÈü´Ï´Ù!");
+        //Debug.Log($"íŠ¹ìˆ˜ ê³µê²© : í™”ìƒ. ëŒ€ìƒ : {target}. {_duration}ì´ˆì— ê±¸ì³ {_totalDamage}ë§Œí¼ì˜ í”¼í•´ë¥¼ ì…í™ë‹ˆë‹¤!");
 
         if (_projectilePrefab == null)
         {
-            Debug.LogError("È­¿°±¸ ÇÁ¸®ÆÕÀÌ ¿¬°áµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.LogError("í™”ì—¼êµ¬ í”„ë¦¬íŒ¹ì´ ì—°ê²°ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
             return;
         }
 
-        //¹ß»ç À§Ä¡¸¦ ÀûÀÇ À§Ä¡º¸´Ù ¾à°£ ¾ÕÀ¸·Î ¼³Á¤
+        //ë°œì‚¬ ìœ„ì¹˜ë¥¼ ì ì˜ ìœ„ì¹˜ë³´ë‹¤ ì•½ê°„ ì•ìœ¼ë¡œ ì„¤ì •
         Vector3 spawnPos = attacker.position + attacker.forward * 1.2f;
-        //¹ß»ç ¹æÇâÀº Å¸°Ù(ÇÃ·¹ÀÌ¾î)¸¦ ÇâÇØ
+        //ë°œì‚¬ ë°©í–¥ì€ íƒ€ê²Ÿ(í”Œë ˆì´ì–´)ë¥¼ í–¥í•´
         Quaternion spawnRot = Quaternion.LookRotation(target.position - attacker.position);
 
-        //È­¿°±¸ ÇÁ¸®ÆÕ »ı¼º
+        //í™”ì—¼êµ¬ í”„ë¦¬íŒ¹ ìƒì„±
         GameObject projectileGO = Instantiate(_projectilePrefab, spawnPos, spawnRot);
 
-        //»ı¼ºµÈ È­¿°±¸¸¦ ÃÊ±âÈ­
+        //ìƒì„±ëœ í™”ì—¼êµ¬ë¥¼ ì´ˆê¸°í™”
         ProjectileController controller = projectileGO.GetComponent<ProjectileController>();
         if (controller != null)
         {

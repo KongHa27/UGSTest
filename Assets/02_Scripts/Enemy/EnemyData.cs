@@ -1,49 +1,51 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "EnemyData", menuName = "Enemy/EnemyData")]
 public class EnemyData : ScriptableObject
 {
-    [Header("----- ±âº» Á¤º¸ -----")]
-    [SerializeField] string _name;              //ÀÌ¸§
-    [SerializeField] GameObject _prefab;        //ÇÁ¸®ÆÕ
+    [Header("----- ê¸°ë³¸ ì •ë³´ -----")]
+    [SerializeField] string _name;              //ì´ë¦„
+    [SerializeField] GameObject _prefab;        //í”„ë¦¬íŒ¹
 
-    [Header("----- ½ºÅÈ -----")]
-    [SerializeField] float _maxHp;              //ÃÖ´ë Ã¼·Â
-    [SerializeField] float _moveSpeed;          //ÀÌµ¿ ¼Óµµ
-    [SerializeField] float _atk;                //°ø°Ý·Â
+    [Header("----- ìŠ¤íƒ¯ -----")]
+    [SerializeField] float _maxHp;              //ìµœëŒ€ ì²´ë ¥
+    [SerializeField] float _moveSpeed;          //ì´ë™ ì†ë„
+    [SerializeField] float _atk;                //ê³µê²©ë ¥
 
-    [Header("----- Çàµ¿ ÆÐÅÏ -----")]
-    [SerializeField] float _detectionRange;     //Å½Áö »ç°Å¸®
-    [SerializeField] float _patrolRadius;       //¹èÈ¸ »ç°Å¸®
-    [SerializeField] float _patrolWaitTime;     //¹èÈ¸ ÄðÅ¸ÀÓ
+    [Header("----- í–‰ë™ íŒ¨í„´ -----")]
+    [SerializeField] float _detectionRange;     //íƒì§€ ì‚¬ê±°ë¦¬
+    [SerializeField] float _chaseDistance;      //ì¶”ê²© ìœ ì§€ ì‚¬ê±°ë¦¬
+    [SerializeField] float _patrolRadius;       //ë°°íšŒ ì‚¬ê±°ë¦¬
+    [SerializeField] float _patrolWaitTime;     //ë°°íšŒ ì¿¨íƒ€ìž„
 
-    [Header("----- ÀüÅõ -----")]
-    [SerializeField] float _attackRange;        //°ø°Ý »ç°Å¸®
-    [SerializeField] float _attackCoolTime;     //°ø°Ý ÄðÅ¸ÀÓ
-    [SerializeField] float _rewardExp;          //°æÇèÄ¡ º¸»ó
-    [SerializeField] int _rewardGold;           //°ñµå º¸»ó
+    [Header("----- ì „íˆ¬ -----")]
+    [SerializeField] float _attackRange;        //ê³µê²© ì‚¬ê±°ë¦¬
+    [SerializeField] float _attackCoolTime;     //ê³µê²© ì¿¨íƒ€ìž„
+    [SerializeField] float _rewardExp;          //ê²½í—˜ì¹˜ ë³´ìƒ
+    [SerializeField] int _rewardGold;           //ê³¨ë“œ ë³´ìƒ
 
-    [Header("----- ¿¡ÇÈ -----")]
-    [SerializeField] bool _canBeEpic = false;   //¿¡ÇÈ ¸ó½ºÅÍ°¡ µÉ ¼ö ÀÖ´ÂÁö ¿©ºÎ
-    [SerializeField] float _epicChance;         //¿¡ÇÈ ¸ó½ºÅÍ°¡ µÉ È®·ü
+    [Header("----- ì—í”½ -----")]
+    [SerializeField] bool _canBeEpic = false;   //ì—í”½ ëª¬ìŠ¤í„°ê°€ ë  ìˆ˜ ìžˆëŠ”ì§€ ì—¬ë¶€
+    [SerializeField] float _epicChance;         //ì—í”½ ëª¬ìŠ¤í„°ê°€ ë  í™•ë¥ 
 
-    [Header("----- ¿¡ÇÈ ¸ó½ºÅÍ ½ºÅÈ ¹è¼ö -----")]
-    [SerializeField] float _epicHpMultiplier;   //Ã¼·Â ¹è¼ö
-    [SerializeField] float _epicAtkMultiplier;  //°ø°Ý·Â ¹è¼ö
-    [SerializeField] float _epicExpMultirlier;  //º¸»ó °æÇèÄ¡ ¹è¼ö
-    [SerializeField] int _epicGoldMultirlier;   //º¸»ó °ñµå ¹è¼ö
+    [Header("----- ì—í”½ ëª¬ìŠ¤í„° ìŠ¤íƒ¯ ë°°ìˆ˜ -----")]
+    [SerializeField] float _epicHpMultiplier;   //ì²´ë ¥ ë°°ìˆ˜
+    [SerializeField] float _epicAtkMultiplier;  //ê³µê²©ë ¥ ë°°ìˆ˜
+    [SerializeField] float _epicExpMultirlier;  //ë³´ìƒ ê²½í—˜ì¹˜ ë°°ìˆ˜
+    [SerializeField] int _epicGoldMultirlier;   //ë³´ìƒ ê³¨ë“œ ë°°ìˆ˜
 
-    [Header("----- ¿¡ÇÈ Æ¯¼ö °ø°Ý -----")]
-    [SerializeField] float _specialAttackCoolTime;
-    [SerializeField] SpecialAttackBase _specialAttack;
+    [Header("----- ì—í”½ íŠ¹ìˆ˜ ê³µê²© -----")]
+    [SerializeField] float _specialAttackCoolTime;  //íŠ¹ìˆ˜ ê³µê²© ì¿¨íƒ€ìž„
 
-    // ----- ÇÁ·ÎÆÛÆ¼ ------ //
+    // ----- í”„ë¡œí¼í‹° ------ //
     public string Name => _name;
     public GameObject Prefab => _prefab;
     public float MaxHp => _maxHp;
     public float MoveSpeed => _moveSpeed;
     public float Atk => _atk;
     public float DetectionRange => _detectionRange;
+    public float ChaseDistance => _chaseDistance;
     public float PatrolRadius => _patrolRadius;
     public float PatrolWaitTime => _patrolWaitTime;
     public float AttackRange => _attackRange;
@@ -51,7 +53,7 @@ public class EnemyData : ScriptableObject
     public float RewardExp => _rewardExp;
     public int RewardGold => _rewardGold;
     
-    // - ¿¡ÇÈ ÇÁ·ÎÆÛÆ¼ - //
+    // - ì—í”½ í”„ë¡œí¼í‹° - //
     public bool CanBeEpic => _canBeEpic;
     public float EpicChance => _epicChance;
     public float EpicHpMultiplier => _epicHpMultiplier;
@@ -59,5 +61,4 @@ public class EnemyData : ScriptableObject
     public float EpicExpMultiplier => _epicExpMultirlier;
     public int EpicGoldMultiplier => _epicGoldMultirlier;
     public float SpecialAttackCoolTime => _specialAttackCoolTime;
-    public SpecialAttackBase SpecialAttack => _specialAttack;
 }

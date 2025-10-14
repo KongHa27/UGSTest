@@ -18,6 +18,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _atk: 5
   _detectionRange: 15
+  _chaseDistance: 40
   _patrolRadius: 3
   _patrolWaitTime: 1
   _attackRange: 2
@@ -31,4 +32,3 @@ MonoBehaviour:
   _epicExpMultirlier: 2
   _epicGoldMultirlier: 2
   _specialAttackCoolTime: 2
-  _specialAttack: {fileID: 11400000, guid: 203a368ce6bc0ae458d2560f907d8e75, type: 2}

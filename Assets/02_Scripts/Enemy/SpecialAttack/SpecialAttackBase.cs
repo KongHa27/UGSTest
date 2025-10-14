@@ -1,14 +1,17 @@
 using UnityEngine;
 
 /// <summary>
-/// ¸ðµç Æ¯¼ö °ø°Ý µ¥ÀÌÅÍÀÇ ±â¹ÝÀÌ µÉ Ãß»ó Å¬·¡½º
+/// ëª¨ë“  íŠ¹ìˆ˜ ê³µê²© ë°ì´í„°ì˜ ê¸°ë°˜ì´ ë  ì¶”ìƒ í´ëž˜ìŠ¤
 /// </summary>
 public abstract class SpecialAttackBase : ScriptableObject
 {
+    [SerializeField] GameObject _epicEffect;
+    public GameObject EpicEffect => _epicEffect;
+
     /// <summary>
-    /// Æ¯¼ö °ø°ÝÀ» ½ÇÇàÇÏ´Â ÇÔ¼ö
+    /// íŠ¹ìˆ˜ ê³µê²©ì„ ì‹¤í–‰í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="attacker">°ø°ÝÀ» ½ÃÀüÇÏ´Â ÀÚ½Å</param>
-    /// <param name="target">°ø°ÝÀ» ´çÇÏ´Â ´ë»ó</param>
+    /// <param name="attacker">ê³µê²©ì„ ì‹œì „í•˜ëŠ” ìžì‹ </param>
+    /// <param name="target">ê³µê²©ì„ ë‹¹í•˜ëŠ” ëŒ€ìƒ</param>
     public abstract void Execute(Transform attacker, Transform target);
 }
