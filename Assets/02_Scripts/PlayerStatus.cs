@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerStatus : MonoBehaviour
+public class PlayerStatus : IMonsterDamageable
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,6 +16,11 @@ public class PlayerStatus : MonoBehaviour
 
     public void ApplyBurn(float totalDamage, float duration, float tickInterval)
     {
-        Debug.Log($"È­»ó ½ÃÀÛ! {duration}ÃÊ µ¿¾È ÃÑ {totalDamage}ÀÇ ÇÇÇØ¸¦ ÀÔ½À´Ï´Ù.");
+        Debug.Log($"í™”ìƒ ì‹œì‘! {duration}ì´ˆ ë™ì•ˆ ì´ {totalDamage}ì˜ í”¼í•´ë¥¼ ì…ìŠµë‹ˆë‹¤.");
+    }
+
+    public void TaekDamage(float damage)
+    {
+        throw new System.NotImplementedException();
     }
 }

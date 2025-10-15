@@ -163,6 +163,7 @@ Material:
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 10
+    - _DstBlendAlpha: 10
     - _DstMode: 3
     - _EmissionEnabled: 0
     - _EmissiveMultiply: 3
@@ -203,6 +204,7 @@ Material:
     - _SourceBlendRGB: 10
     - _SpecularHighlights: 1
     - _SrcBlend: 5
+    - _SrcBlendAlpha: 1
     - _SrcMode: 1
     - _StencilRef: 0
     - _StencilRefDepth: 1
