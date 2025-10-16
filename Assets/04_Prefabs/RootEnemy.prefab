@@ -264,6 +264,8 @@ MonoBehaviour:
   _playerLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  _specialAttack: {fileID: 0}
+  _group: {fileID: 0}
 --- !u!95 &5826251144219245232
 Animator:
   serializedVersion: 7

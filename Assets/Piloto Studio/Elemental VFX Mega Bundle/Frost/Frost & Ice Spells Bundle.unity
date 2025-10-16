@@ -7048,11 +7048,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 456015660912281076, guid: 6e60263a679893c40a3920c004098046, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8210249621583863347, guid: 6e60263a679893c40a3920c004098046, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9125168038263429074, guid: 6e60263a679893c40a3920c004098046, type: 3}
       propertyPath: m_Name

@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
     [SerializeField] NavMeshAgent _agent;
     [SerializeField] Transform _target;
     [SerializeField] Animator _animator;
-
+    
     public enum EnemyState
     {
         Patrol,
@@ -237,7 +237,7 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
         }
 
         //만약 에픽 몬스터이고, 특수 공격 쿨타임이 다 찼다면
-        if (_isEpic && _specialAttack != null && Time.time >= _lastSpecialAttackTime + _data.SpecialAttackCoolTime)
+        if (_isEpic && _specialAttack != null && Time.time >= _lastSpecialAttackTime + _specialAttack.SACoolTime)
         {
             //특수 공격 실행
             PerformSpecialAttack();
@@ -326,7 +326,7 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
         GetComponent<Collider>().enabled = false;
 
         //3초 후 오브젝트 파괴
-        Destroy(gameObject, 3f);
+        //Destroy(gameObject, 3f);
     }
 
     private void OnDrawGizmos()

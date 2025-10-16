@@ -35,9 +35,6 @@ public class EnemyData : ScriptableObject
     [SerializeField] float _epicExpMultirlier;  //보상 경험치 배수
     [SerializeField] int _epicGoldMultirlier;   //보상 골드 배수
 
-    [Header("----- 에픽 특수 공격 -----")]
-    [SerializeField] float _specialAttackCoolTime;  //특수 공격 쿨타임
-
     // ----- 프로퍼티 ------ //
     public string Name => _name;
     public GameObject Prefab => _prefab;
@@ -60,5 +57,4 @@ public class EnemyData : ScriptableObject
     public float EpicAtkMultiplier => _epicAtkMultiplier;
     public float EpicExpMultiplier => _epicExpMultirlier;
     public int EpicGoldMultiplier => _epicGoldMultirlier;
-    public float SpecialAttackCoolTime => _specialAttackCoolTime;
 }

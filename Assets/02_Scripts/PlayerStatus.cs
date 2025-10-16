@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class PlayerStatus : IMonsterDamageable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] float _maxHp;
+    [SerializeField] float _curHp;
+
     void Start()
     {
-        
+        _curHp = _maxHp;
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -21,6 +22,16 @@ public class PlayerStatus : IMonsterDamageable
 
     public void TaekDamage(float damage)
     {
-        throw new System.NotImplementedException();
+        _curHp = Mathf.Max(0, _curHp - damage);
+
+        if (_curHp <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("플레이어 사망");
     }
 }
