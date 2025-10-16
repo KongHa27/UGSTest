@@ -38,6 +38,13 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
     float _lastAttackTime;
     float _lastSpecialAttackTime;
 
+    // 애니메이터 파라미터 해시값 //
+    private readonly int _hashMoveSpeed = Animator.StringToHash("MoveSpeed");
+    private readonly int _hashAttack = Animator.StringToHash("Attack");
+    private readonly int _hashSpecialAttack = Animator.StringToHash("SpecialAttack");
+    private readonly int _hashTakeHit = Animator.StringToHash("TakeHit");
+    private readonly int _hashDie = Animator.StringToHash("Die");
+
     private void Awake()
     {
         _curState = EnemyState.Patrol;
@@ -87,6 +94,8 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
     {
         if (_curState == EnemyState.Dead) return;
 
+        _animator.SetFloat(_hashMoveSpeed, _agent.velocity.magnitude / _agent.speed);
+
         switch (_curState)
         {
             case EnemyState.Patrol:
@@ -97,8 +106,6 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
                 break;
             case EnemyState.Attack:
                 UpdateAttackState();
-                break;
-            case EnemyState.Dead:
                 break;
             default:
                 break;
@@ -256,7 +263,7 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
     void PerformSpecialAttack()
     {
         _lastSpecialAttackTime = Time.time;
-        //_animator.SetTrigger("SpecialAttack");
+        _animator.SetTrigger(_hashSpecialAttack);
 
         _specialAttack.Execute(transform, _target);
     }
@@ -267,10 +274,8 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
     void PerformBasicAttack()
     {
         _lastAttackTime = Time.time;
-        //_animator.SetTrigger("Attack");
+        _animator.SetTrigger(_hashAttack);
         Debug.Log("공격!! 데미지 : " + _atk);
-
-        //Player 스크립트에서 처리?
     }
 
     /// <summary>
@@ -306,27 +311,32 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
         //현재 체력을 데미지 만큼 감소
         _curHp -= damage;
 
+        //애니메이션 재생
+        _animator.SetTrigger(_hashTakeHit);
+
         //현재 체력이 0보다 작거나 같으면
         if (_curHp <= 0)
         {
-            Dead();
+            Die();
         }
     }
 
-    public void Dead()
+    public void Die()
     {
         //현재 상태가 죽음 상태면 리턴
         if (_curState == EnemyState.Dead) return;
 
         //상태를 죽음 상태로 바꾸기
         ChangeState(EnemyState.Dead);
+
+        //파괴 대신 
         //네비게이션 중지
         _agent.isStopped = true;
         //콜라이더 비활성화
         GetComponent<Collider>().enabled = false;
 
-        //3초 후 오브젝트 파괴
-        //Destroy(gameObject, 3f);
+        //애니메이션 재생
+        _animator.SetTrigger(_hashDie);
     }
 
     private void OnDrawGizmos()

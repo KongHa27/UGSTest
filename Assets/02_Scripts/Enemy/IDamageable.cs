@@ -4,5 +4,5 @@ public interface IDamageable
 {
     void TakeDamege(float damage);
 
-    void Dead();
+    void Die();
 }

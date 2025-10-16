@@ -9,7 +9,7 @@ public abstract class SpecialAttackBase : ScriptableObject
     [SerializeField] GameObject _epicEffect;
 
     //특수 공격 쿨타임
-    [SerializeField] float _SACoolTime;
+    [SerializeField] float _SACoolTime = 10f;
 
     // 프로퍼티 //
     public GameObject EpicEffect => _epicEffect;
