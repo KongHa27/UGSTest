@@ -4854,7 +4854,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8125273079069608207}
-  - component: {fileID: 5206476931257797091}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -4878,20 +4877,6 @@ Transform:
   - {fileID: 5383519357671325165}
   m_Father: {fileID: 5200875917679379670}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5206476931257797091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786753098955425387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd9bd97e2079ef49b0b6eb201cdfbb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 50
-  axis: {x: 0, y: 1, z: 0}
 --- !u!1 &3511787228006825536
 GameObject:
   m_ObjectHideFlags: 0
@@ -4938,6 +4923,7 @@ GameObject:
   - component: {fileID: 5200875917679379670}
   - component: {fileID: 2420791179544468838}
   - component: {fileID: 6728930300259899002}
+  - component: {fileID: 4068332378325863513}
   m_Layer: 0
   m_Name: FireEffect
   m_TagString: Untagged
@@ -9773,6 +9759,20 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &4068332378325863513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5576249164920813964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd9bd97e2079ef49b0b6eb201cdfbb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  axis: {x: 0, y: 1, z: 0}
 --- !u!1 &6513106923424037199
 GameObject:
   m_ObjectHideFlags: 0

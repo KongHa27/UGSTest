@@ -20,7 +20,7 @@ public class PlayerStatus : IMonsterDamageable
         Debug.Log($"화상 시작! {duration}초 동안 총 {totalDamage}의 피해를 입습니다.");
     }
 
-    public void TaekDamage(float damage)
+    public void TakeDamage(float damage)
     {
         _curHp = Mathf.Max(0, _curHp - damage);
 
@@ -30,7 +30,7 @@ public class PlayerStatus : IMonsterDamageable
         }
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log("플레이어 사망");
     }

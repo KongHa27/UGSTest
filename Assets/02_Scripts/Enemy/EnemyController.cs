@@ -1,7 +1,11 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour, IDamageable, IAttackable
+/// <summary>
+/// 기본 적 클래스
+/// 
+/// </summary>
+public class EnemyController : MonoBehaviour, IDamageable
 {
     [Header("----- 컴포넌트 -----")]
     [SerializeField] EnemyData _data;
@@ -42,6 +46,7 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
     private readonly int _hashMoveSpeed = Animator.StringToHash("MoveSpeed");
     private readonly int _hashAttack = Animator.StringToHash("Attack");
     private readonly int _hashSpecialAttack = Animator.StringToHash("SpecialAttack");
+    private readonly int _hashSpecialAttackID = Animator.StringToHash("SpecialAttackID");
     private readonly int _hashTakeHit = Animator.StringToHash("TakeHit");
     private readonly int _hashDie = Animator.StringToHash("Die");
 
@@ -76,6 +81,7 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
             Debug.Log($"{name}이(가) 에픽 몬스터로 등장!");
             
             _specialAttack = specialAttack;
+            _animator.SetInteger(_hashSpecialAttackID, _specialAttack.AnimationID);
 
             if (_specialAttack != null && _specialAttack.EpicEffect != null)
             {
@@ -190,29 +196,40 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
             return;
         }
 
-        //타겟을 따라가도록 설정
-        _agent.isStopped = false;
-        _agent.SetDestination(_target.position);
-
-        //자신과 타겟 사이의 거리 구하기
-        float distance = Vector3.Distance(transform.position, _target.position);
-
-        //자신과 타겟 사이의 거리가 감지 범위보다 크다면
-        if (distance > _data.ChaseDistance)
+        NavMeshPath path = new NavMeshPath();
+        if (_agent.CalculatePath(_target.position, path))
         {
-            Debug.Log("타겟을 찾을 수 없음. 추격 중지");
-            
-            //상태를 배회 상태로 바꾸고 리턴
-            ChangeState(EnemyState.Patrol);
-            return;
-        }
+            if (path.status == NavMeshPathStatus.PathComplete)
+            {
+                //타겟을 따라가도록 설정
+                _agent.isStopped = false;
+                _agent.SetDestination(_target.position);
 
-        //자신과 타겟 사이의 거리가 공격 범위보다 작다면
-        if (distance <= _attackRange)
-        {
-            //상태를 공격 상태로 변경
-            ChangeState(EnemyState.Attack);
-        }
+                //자신과 타겟 사이의 거리 구하기
+                float distance = Vector3.Distance(transform.position, _target.position);
+
+                //자신과 타겟 사이의 거리가 감지 범위보다 크다면
+                if (distance > _data.ChaseDistance)
+                {
+                    Debug.Log("타겟을 찾을 수 없음. 추격 중지");
+
+                    //상태를 배회 상태로 바꾸고 리턴
+                    ChangeState(EnemyState.Patrol);
+                    return;
+                }
+
+                //자신과 타겟 사이의 거리가 공격 범위보다 작다면
+                if (distance <= _attackRange)
+                {
+                    //상태를 공격 상태로 변경
+                    ChangeState(EnemyState.Attack);
+                }
+            }
+            else
+            {
+                ChangeState(EnemyState.Patrol);
+            }
+        } 
     }
 
     /// <summary>
@@ -297,13 +314,7 @@ public class EnemyController : MonoBehaviour, IDamageable, IAttackable
         }
     }
 
-    // 인터페이스 구현 //
-    public void Attack(IDamageable damageable)
-    {
-        PerformBasicAttack();
-    }
-
-    public void TakeDamege(float damage)
+    public void TakeDamage(float damage)
     {
         //현재 상태가 죽음 상태면 리턴
         if (_curState == EnemyState.Dead) return;
