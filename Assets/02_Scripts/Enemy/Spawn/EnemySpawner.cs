@@ -5,9 +5,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] EnemySpawnData _data;      //스폰 데이터
     [SerializeField] float _spawnRadius = 10f;  //각 적들 사이의 간격
-
-    [Header("----- 특수 공격 리스트 -----")]
-    [SerializeField] List<SpecialAttackBase> _specialAttackList;
+    [SerializeField] EpicEnemySelector _epicEnemySelector;
 
     private GameObject _group;
     bool _isActive = false;
@@ -18,6 +16,8 @@ public class EnemySpawner : MonoBehaviour
         {
             SpawnerManager.Instance.RegisterSpawner(this);
         }
+
+        _epicEnemySelector = GetComponent<EpicEnemySelector>();
 
         CreateEnemyGroup();
     }
@@ -64,16 +64,13 @@ public class EnemySpawner : MonoBehaviour
             GameObject enemy = Instantiate(data.Prefab, ranPos, Quaternion.identity);
             enemy.transform.SetParent(_group.transform);
 
-            //에픽 후보 여부를 알려주고, 적 초기화
+            //에픽 여부와 특수 공격 데이터를 구하고
             bool isCandidate = (i == epicCandidateIndex);
-            SpecialAttackBase specialAttack = null;
+            bool isEpic = isCandidate && _epicEnemySelector.TryBeEpic();
+            SpecialAttackBase specialAttack = isEpic ? _epicEnemySelector.GetRandomSpecialAttack() : null;
 
-            if (isCandidate && _specialAttackList.Count > 0)
-            {
-                int ranSA = Random.Range(0, _specialAttackList.Count);
-                specialAttack = _specialAttackList[ranSA];
-            }
-            enemy.GetComponent<EnemyController>().Initialize(isCandidate, specialAttack);
+            //적 초기화
+            enemy.GetComponent<EnemyController>().Initialize(isEpic, specialAttack);
         }
 
         _group.SetActive(false);

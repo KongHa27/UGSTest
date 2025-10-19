@@ -3,11 +3,9 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     [SerializeField] float _speed;
-    [SerializeField] float _totalDamage;
-    [SerializeField] float _duration;
-    [SerializeField] float _tickInterval;
-
     [SerializeField] Rigidbody _rb;
+
+    [SerializeField] SpecialAttackBase _specialAttack;
 
     void Awake()
     {
@@ -21,14 +19,12 @@ public class ProjectileController : MonoBehaviour
     /// <param name="totalDamage"></param>
     /// <param name="duration"></param>
     /// <param name="tickInterval"></param>
-    public void Initialize(float speed, float totalDamage, float duration, float tickInterval)
+    public void Initialize(float speed, SpecialAttackBase specialAttack)
     {
         _speed = speed;
-        _totalDamage = totalDamage;
-        _duration = duration;
-        _tickInterval = tickInterval;
-
         _rb.linearVelocity = transform.forward * _speed;
+
+        _specialAttack = specialAttack;
 
         Destroy(gameObject, 5f);
     }
@@ -41,10 +37,10 @@ public class ProjectileController : MonoBehaviour
             Debug.Log("발사체가 플레이어에게 명중!");
 
             //Player 스크립트에서  처리
-            PlayerStatus playerStatus = other.GetComponent<PlayerStatus>();
-            if (playerStatus != null)
+            IMonsterDamageable player = other.GetComponent<IMonsterDamageable>();
+            if (player != null && _specialAttack != null)
             {
-                playerStatus.ApplyBurn(_totalDamage, _duration, _tickInterval);
+                player.ApplySpecialEffect(_specialAttack);
             }
 
             Destroy(gameObject);

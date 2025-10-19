@@ -8,5 +8,11 @@ public interface IMonsterDamageable
 {
     void TakeDamage(float damage);
 
+    /// <summary>
+    /// 에픽 몬스터의 특수 공격 효과를 적용받는 함수
+    /// </summary>
+    /// <param name="attack"></param>
+    void ApplySpecialEffect(SpecialAttackBase attack);
+
     void Die();
 }

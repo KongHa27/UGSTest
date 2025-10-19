@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60e16f716f8a6c4fa1c49bd1c53c586, type: 3}
   m_Name: SA_Wood
   m_EditorClassIdentifier: 
-  _epicEffect: {fileID: 5576249164920813964, guid: d9eef5ac1567d2445a1647b9948d84c4, type: 3}
-  _duration: 3
+  _epicEffect: {fileID: 6250747027149468508, guid: 914afb8c60afc0c47bdd62badc44fad3, type: 3}
+  _type: 3
+  _coolTime: 10
+  _aoePrefab: {fileID: 5270648413212700517, guid: 001a88e342cd8fd49b013607cff6e4d0, type: 3}
+  _playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _rootEffect: {fileID: 4581489971288674818, guid: 874d5065da05bec4c9f7dbb450f5ecc0, type: 3}
+  _defenseDebuffEffect: {fileID: 690973771237170886, guid: 173f9545bf819e04299c093434279c3c, type: 3}

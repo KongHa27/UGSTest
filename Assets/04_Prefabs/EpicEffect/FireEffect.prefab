@@ -4922,6 +4922,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5200875917679379670}
   - component: {fileID: 2420791179544468838}
+  - component: {fileID: -2402762303362114179}
   - component: {fileID: 6728930300259899002}
   - component: {fileID: 4068332378325863513}
   m_Layer: 0
@@ -4940,7 +4941,7 @@ Transform:
   m_GameObject: {fileID: 5576249164920813964}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -2}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9682,6 +9683,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &-2402762303362114179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5576249164920813964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd9bd97e2079ef49b0b6eb201cdfbb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!199 &6728930300259899002
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -9771,8 +9784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd9bd97e2079ef49b0b6eb201cdfbb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
-  axis: {x: 0, y: 1, z: 0}
 --- !u!1 &6513106923424037199
 GameObject:
   m_ObjectHideFlags: 0
