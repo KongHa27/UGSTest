@@ -426,7 +426,8 @@ PrefabInstance:
       propertyPath: _data
       value: 
       objectReference: {fileID: 11400000, guid: 0c5c8f97cd134354a96b3fd44ea6cccd, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3380606564475960686, guid: 1b775d6adb58a1f40bbcd2803e7f9ae3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -671,7 +672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7209925033233358126, guid: 3b8886782725fde4a80b0cb42dd964f1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1007,7 +1008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!208 &970731845
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1453,7 +1454,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3380606564475960686, guid: 1b775d6adb58a1f40bbcd2803e7f9ae3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

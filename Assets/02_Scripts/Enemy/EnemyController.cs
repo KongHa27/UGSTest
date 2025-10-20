@@ -54,6 +54,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     // 애니메이터 파라미터 해시값 //
     private readonly int _hashMoveSpeed = Animator.StringToHash("MoveSpeed");
     private readonly int _hashAttack = Animator.StringToHash("Attack");
+    private readonly int _hashSpecialAttack = Animator.StringToHash("SpecialAttack");
+    private readonly int _hashSpecialAttackID = Animator.StringToHash("SpecialAttackID");
     private readonly int _hashTakeHit = Animator.StringToHash("TakeHit");
     private readonly int _hashDie = Animator.StringToHash("Die");
 
@@ -299,7 +301,9 @@ public class EnemyController : MonoBehaviour, IDamageable
     void PerformSpecialAttack()
     {
         _lastSpecialAttackTime = Time.time;
-        _animator.SetTrigger(_specialAttack.SpecialAttackAnim);
+
+        _animator.SetTrigger(_hashSpecialAttack);
+        _animator.SetInteger(_hashSpecialAttackID, _specialAttack.SpecialAttackAnim);
 
         _specialAttack.Execute(transform, _target);
     }
