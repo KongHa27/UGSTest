@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour, IMonsterDamageable
 {
-    [SerializeField] Rigidbody _rb;
 
     [SerializeField] float _maxHp;
     [SerializeField] float _curHp;
@@ -11,7 +10,6 @@ public class PlayerStatus : MonoBehaviour, IMonsterDamageable
 
     void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
         _curHp = _maxHp;
     }
 
@@ -233,13 +231,6 @@ public class PlayerStatus : MonoBehaviour, IMonsterDamageable
         Debug.Log("금 효과 : 넉백 및 넉다운 발동");
 
         //넉백
-        if (_rb != null)
-        {
-            //공격자 위치 알아야 정확한 넉백 방향 알 수 있음
-            //여기서는 임시로 뒤로 밀려난다고 가정.
-            Vector3 knockbackDir = -transform.forward;
-            _rb.AddForce(knockbackDir * attack.KnockbackPower, ForceMode.Impulse);
-        }
 
         //넉다운
         //넉다운 이펙트 생성
