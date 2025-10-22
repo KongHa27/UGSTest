@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour, IDamagable
 
     [Header(" ----- 드랍 설정 -----")]
     //[SerializeField] private ItemDropTableData _dropTable;         // 아이템 드랍 테이블
-    [SerializeField][Range(0f, 1f)] private float _dropChance = 0.5f;  // 드랍 확률 (50%)
+    //[SerializeField][Range(0f, 1f)] private float _dropChance = 0.5f;  // 드랍 확률 (50%)
 
     // 현재 속한 그룹 //
     [SerializeField] EnemyGroup _group;
