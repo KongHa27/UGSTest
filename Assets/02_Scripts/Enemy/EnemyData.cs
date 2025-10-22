@@ -5,31 +5,26 @@ using System.Collections.Generic;
 public class EnemyData : ScriptableObject
 {
     [Header("----- 기본 정보 -----")]
-    [SerializeField] string _name;              //이름
-    [SerializeField] GameObject _prefab;        //프리팹
+    [SerializeField] string _name;                  //이름
+    [SerializeField] GameObject _prefab;            //프리팹
 
     [Header("----- 스탯 -----")]
-    [SerializeField] float _maxHp;              //최대 체력
-    [SerializeField] float _moveSpeed;          //이동 속도
-    [SerializeField] float _atk;                //공격력
+    [SerializeField] float _maxHp;                  //최대 체력
+    [SerializeField] float _moveSpeed;              //이동 속도
+    [SerializeField] float _atk;                    //공격력
 
     [Header("----- 행동 패턴 -----")]
-    [SerializeField] float _detectionRange;     //탐지 사거리
-    [SerializeField] float _chaseDistance;      //추격 유지 사거리
-    [SerializeField] float _patrolRadius;       //배회 사거리
-    [SerializeField] float _patrolWaitTime;     //배회 쿨타임
+    [SerializeField] float _detectionRange;         //탐지 사거리
+    [SerializeField] float _chaseDistance;          //추격 유지 사거리
+    [SerializeField] float _patrolRadius;           //배회 사거리
+    [SerializeField] float _patrolWaitTime;         //배회 쿨타임
 
     [Header("----- 전투 -----")]
-    [SerializeField] float _attackRange;        //공격 사거리
-    [SerializeField] float _attackCoolTime;     //공격 쿨타임
-    [SerializeField] int _rewardExp;          //경험치 보상
-    [SerializeField] int _rewardGold;           //골드 보상
-
-    [Header("----- 에픽 몬스터 스탯 배수 -----")]
-    [SerializeField] float _epicHpMultiplier;   //체력 배수
-    [SerializeField] float _epicAtkMultiplier;  //공격력 배수
-    [SerializeField] int _epicExpMultirlier;  //보상 경험치 배수
-    [SerializeField] int _epicGoldMultirlier;   //보상 골드 배수
+    [SerializeField] BasicAttackType _attackType;   //일반 공격 타입
+    [SerializeField] float _attackRange;            //공격 사거리
+    [SerializeField] float _attackCoolTime;         //공격 쿨타임
+    [SerializeField] int _rewardExp;                //경험치 보상
+    [SerializeField] int _rewardGold;               //골드 보상
 
     // ----- 프로퍼티 ------ //
     public string Name => _name;
@@ -45,10 +40,4 @@ public class EnemyData : ScriptableObject
     public float AttackCoolTime => _attackCoolTime;
     public int RewardExp => _rewardExp;
     public int RewardGold => _rewardGold;
-    
-    // - 에픽 프로퍼티 - //
-    public float EpicHpMultiplier => _epicHpMultiplier;
-    public float EpicAtkMultiplier => _epicAtkMultiplier;
-    public int EpicExpMultiplier => _epicExpMultirlier;
-    public int EpicGoldMultiplier => _epicGoldMultirlier;
 }

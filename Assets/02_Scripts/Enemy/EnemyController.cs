@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,66 +6,48 @@ using UnityEngine.AI;
 /// 기본 적 클래스
 /// 
 /// </summary>
-public class EnemyController : MonoBehaviour, IDamagable
+public class EnemyController : MonoBehaviour, IDamageable
 {
     [Header("----- 컴포넌트 -----")]
     [SerializeField] EnemyData _data;
-    [SerializeField] NavMeshAgent _agent;
-    [SerializeField] Transform _target;
-    [SerializeField] Animator _animator;
-    
-    public enum EnemyState
-    {
-        Idle,
-        Chase,
-        Attack,
-        Dead
-    }
-    [SerializeField] EnemyState _curState = EnemyState.Idle;
-    public EnemyState CurState => _curState;
 
-    [Header("----- 전투 -----")]
-    [SerializeField] LayerMask _playerLayerMask;
-    [SerializeField] SpecialAttackBase _specialAttack;
-
-    [Header(" ----- 드랍 설정 -----")]
+    [Header("----- 드랍 설정 -----")]
     //[SerializeField] private ItemDropTableData _dropTable;         // 아이템 드랍 테이블
     //[SerializeField][Range(0f, 1f)] private float _dropChance = 0.5f;  // 드랍 확률 (50%)
 
-    // 현재 속한 그룹 //
+    [Header("----- 현재 속한 그룹 -----")]
     [SerializeField] EnemyGroup _group;
+
+    [Header("----- 에픽 몬스터 -----")]
+    [SerializeField] SpecialAttackBase _specialAttack;
+
+    [Header("----- 에픽 몬스터 스탯 배수 -----")]
+    [SerializeField] float _epicHpMultiplier;   //체력 배수
+    [SerializeField] float _epicAtkMultiplier;  //공격력 배수
+    [SerializeField] int _epicExpMultiplier;  //보상 경험치 배수
+    [SerializeField] int _epicGoldMultiplier;   //보상 골드 배수
+
+    // 이벤트 //
+    public event Action OnInitialized;
+    public event Action OnHit;
+    public event Action OnDie;
 
     // 현재 상태 스탯 //
     bool _isEpic = false;
     float _maxHp;
     float _curHp;
-
     float _atk;
-    float _attackRange;
-    Vector3 _spawnPos;      //스폰될 때의 위치
 
     int _expReward;
     int _goldReward;
 
-    // 타이머 및 쿨타임 관리 //
-    float _lastAttackTime;
-    float _lastSpecialAttackTime;
-    float _backToSpawnTimer;
-    float _pathCheckTimer;
-    int _pathCheckCount = 0;
 
-    // 애니메이터 파라미터 해시값 //
-    private readonly int _hashMoveSpeed = Animator.StringToHash("MoveSpeed");
-    private readonly int _hashAttack = Animator.StringToHash("Attack");
-    private readonly int _hashSpecialAttack = Animator.StringToHash("SpecialAttack");
-    private readonly int _hashSpecialAttackID = Animator.StringToHash("SpecialAttackID");
-    private readonly int _hashTakeHit = Animator.StringToHash("TakeHit");
-    private readonly int _hashDie = Animator.StringToHash("Die");
-
-    private void Awake()
-    {
-        _curState = EnemyState.Idle;
-    }
+    // 프로퍼티 //
+    public EnemyData Data => _data;
+    public EnemyGroup Group => _group;
+    public bool IsEpic => _isEpic;
+    public SpecialAttackBase SpecialAttack => _specialAttack;
+    public float Atk => _atk;
 
     /// <summary>
     /// Enemy를 초기화하는 함수
@@ -79,17 +62,13 @@ public class EnemyController : MonoBehaviour, IDamagable
         _specialAttack = specialAttack;
 
         //스탯 초기화
-        _maxHp = _data.MaxHp * (_isEpic ? _data.EpicHpMultiplier : 1);
+        _maxHp = _data.MaxHp * (_isEpic ? _epicHpMultiplier : 1);
         _curHp = _maxHp;
 
-        _atk = _data.Atk * (_isEpic ? _data.EpicAtkMultiplier : 1);
-        _attackRange = _data.AttackRange;
-        _agent.speed = _data.MoveSpeed;
+        _atk = _data.Atk * (_isEpic ? _epicAtkMultiplier : 1);
 
-        _spawnPos = transform.position;
-
-        _expReward = _data.RewardExp * (_isEpic ? _data.EpicExpMultiplier : 1);
-        _goldReward = _data.RewardGold * (_isEpic ? _data.EpicGoldMultiplier : 1);
+        _expReward = _data.RewardExp * (_isEpic ? _epicExpMultiplier : 1);
+        _goldReward = _data.RewardGold * (_isEpic ? _epicGoldMultiplier : 1);
 
         if (_isEpic)
         {
@@ -120,282 +99,20 @@ public class EnemyController : MonoBehaviour, IDamagable
                 }
             }
         }
-    }
 
-    void Update()
-    {
-        if (_curState == EnemyState.Dead) return;
-
-        _animator.SetFloat(_hashMoveSpeed, (float)(_agent.velocity.magnitude / _agent.speed));
-
-        switch (_curState)
-        {
-            case EnemyState.Idle:
-                UpdateIdleState();
-                break;
-            case EnemyState.Chase:
-                UpdateChaseState();
-                break;
-            case EnemyState.Attack:
-                UpdateAttackState();
-                break;
-            default:
-                break;
-        }
-    }
-
-    // 상태 별 행동 함수 //
-
-    /// <summary>
-    /// 대기 상태일 때 실행되는 함수
-    /// </summary>
-    void UpdateIdleState()
-    {
-        //감지 범위 내에서 플레이어를 찾는다.
-        Collider[] colliders = Physics.OverlapSphere(transform.position, _data.DetectionRange, _playerLayerMask);
-
-        //플레이어를 찾으면
-        if (colliders.Length > 0)
-        {
-            //플레이어를 타겟으로 설정
-            _target = colliders[0].transform;
-
-            //플레이어를 향한 경로가 유효하면
-            if (CheckPath(_target.position))
-            {
-                //상태를 추격 상태로 바꾸기
-                ChangeState(EnemyState.Chase);
-
-                //그룹에 타겟 공유
-                if (_group != null)
-                {
-                    _group.ShareAggro(_target);
-                }
-
-                return;
-            }
-        }
-
-        //Idle 상태에서 3초가 지나면
-        _backToSpawnTimer += Time.deltaTime;
-        if (_backToSpawnTimer >= 5)
-        {
-            //스폰 위치로 돌아가기
-            _agent.SetDestination(_spawnPos);
-            _backToSpawnTimer = 0;
-        }
-    }
-
-    /// <summary>
-    /// 그룹의 명령을 받아 추격을 시작하는 함수
-    /// </summary>
-    /// <param name="target"></param>
-    public void ActivateChase(Transform target)
-    {
-        if (_curState == EnemyState.Idle)
-        {
-            Debug.Log("ShareAggro! " + transform.localPosition);
-
-            _target = target;
-            ChangeState(EnemyState.Chase);
-        }
-    }
-
-    /// <summary>
-    /// 추격 상태일 때 실행되는 함수
-    /// </summary>
-    void UpdateChaseState()
-    {
-        //타겟이 null이면
-        if (_target == null)
-        {
-            //상태를 배회 상태로 바꾸고 리턴
-            ChangeState(EnemyState.Idle);
-            return;
-        }
-
-        //경로가 유효하면 타겟을 따라가도록 설정
-        _agent.isStopped = false;
-        _agent.SetDestination(_target.position);
-
-        //0.5초마다 경로 유효성 확인
-        _pathCheckTimer += Time.deltaTime;
-        if (_pathCheckTimer >= 0.5f)
-        {
-            _pathCheckTimer = 0;
-
-            //NavMesh 경로가 막혀있다면
-            if (!CheckPath(_target.position))
-            {
-                //경로 확인 횟수 +1
-                _pathCheckCount++;
-
-                //3번 연속 경로 찾기 실패 시
-                if (_pathCheckCount >= 3)
-                {
-                    //상태를 대기 상태로 바꾸고 리턴
-                    ChangeState(EnemyState.Idle);
-                    _pathCheckCount = 0;
-                    return;
-                }
-            }
-            else
-            {
-                _pathCheckCount = 0;
-            }
-        }
-
-        //자신과 타겟 사이의 거리 구하기
-        float distance = Vector3.Distance(transform.position, _target.position);
-
-        if (!_group.HasAggro)
-        {
-            //자신과 타겟 사이의 거리가 감지 범위보다 크다면
-            if (distance > _data.ChaseDistance)
-            {
-                Debug.Log("타겟을 찾을 수 없음. 추격 중지");
-
-                //상태를 대기 상태로 바꾸고 리턴
-                ChangeState(EnemyState.Idle);
-                return;
-            }
-        }
-
-        //자신과 타겟 사이의 거리가 공격 범위보다 작다면
-        if (distance <= _attackRange)
-        {
-            //상태를 공격 상태로 변경
-            ChangeState(EnemyState.Attack);
-        }
-    }
-
-    /// <summary>
-    /// 공격 상태일 때 실행되는 함수
-    /// </summary>
-    void UpdateAttackState()
-    {
-        if (_target == null)
-        {
-            ChangeState(EnemyState.Idle);
-            return;
-        }
-
-        //타겟을 바라보도록 설정
-        Vector3 changePos = _target.position;
-        changePos.y += 1f;
-        transform.LookAt(changePos);
-
-        //위치는 제자리 고정
-        _agent.SetDestination(transform.position);
-        _agent.isStopped = true;
-
-        //만약 에픽 몬스터이고, 특수 공격 쿨타임이 다 찼다면
-        if (_isEpic && _specialAttack != null && Time.time >= _lastSpecialAttackTime + _specialAttack.CoolTime)
-        {
-            //특수 공격 실행
-            PerformSpecialAttack();
-        }
-        //공격 쿨타임이 다 찼다면
-        else if (Time.time >= _lastAttackTime + _data.AttackCoolTime)
-        {
-            //일반 공격 실행
-            PerformBasicAttack();
-        }
-
-        //자신과 타겟 사이의 거리 구하기
-        float distance = Vector3.Distance(transform.position, _target.position);
-
-        //만약 자신과 타겟 사이의 거리가 공격 범위보다 크다면
-        if (distance > _attackRange)
-        {
-            //상태를 추격 상태로 바꾸고 리턴
-            ChangeState(EnemyState.Chase);
-            return;
-        }
-    }
-
-    /// <summary>
-    /// 특수 공격을 실행하는 함수
-    /// </summary>
-    void PerformSpecialAttack()
-    {
-        _lastSpecialAttackTime = Time.time;
-
-        _animator.SetTrigger(_hashSpecialAttack);
-        _animator.SetInteger(_hashSpecialAttackID, _specialAttack.SpecialAttackAnim);
-
-        _specialAttack.Execute(transform, _target);
-    }
-
-    /// <summary>
-    /// 일반 공격을 실행하는 함수
-    /// </summary>
-    void PerformBasicAttack()
-    {
-        _lastAttackTime = Time.time;
-        _animator.SetTrigger(_hashAttack);
-
-        IMonsterDamageable damageable = _target.GetComponent<IMonsterDamageable>();
-        
-        if (damageable != null)
-        {
-            damageable.TakeDamage(_atk);
-            Debug.Log("공격!! 데미지 : " + _atk);
-        }
-    }
-
-    /// <summary>
-    /// 상태를 바꾸는 함수
-    /// </summary>
-    /// <param name="state"></param>
-    void ChangeState(EnemyState state)
-    {
-        if (_curState == state) return;
-
-        _curState = state;
-
-        //상태가 대기 상태로 변경되면
-        if (_curState == EnemyState.Idle)
-        {
-            //타겟을 비우고
-            _target = null;
-
-            //네이게이션 경로 초기화
-            _agent.ResetPath();
-
-            Debug.Log("대기 상태 전환 완료");
-        }
-    }
-
-    /// <summary>
-    /// 목표 지점까지의 NavMesh 경로가 유효한지 체크하는 함수
-    /// </summary>
-    /// <param name="targetPos"></param>
-    /// <returns></returns>
-    bool CheckPath(Vector3 targetPos)
-    {
-        NavMeshPath path = new NavMeshPath();
-
-        //최단 경로를 찾지 못한 경우 바로 false
-        if (!_agent.CalculatePath(targetPos, path))
-        {
-            return false;
-        }
-
-        //찾은 경로가 막혀잇으면 false, 아무 이상 없으면 true
-        return path.status == NavMeshPathStatus.PathComplete;
+        OnInitialized?.Invoke();
     }
 
     public void TakeDamage(float damage)
     {
         //현재 상태가 죽음 상태면 리턴
-        if (_curState == EnemyState.Dead) return;
+        if (_curHp <= 0) return;
 
         //현재 체력을 데미지 만큼 감소
         _curHp -= damage;
 
-        //애니메이션 재생
-        _animator.SetTrigger(_hashTakeHit);
+        //애니메이션 이벤트 발행
+        OnHit?.Invoke();
 
         //현재 체력이 0보다 작거나 같으면
         if (_curHp <= 0)
@@ -406,11 +123,11 @@ public class EnemyController : MonoBehaviour, IDamagable
 
     void Die()
     {
-        //현재 상태가 죽음 상태면 리턴
-        if (_curState == EnemyState.Dead) return;
+        //죽음 이벤트 발행
+        OnDie?.Invoke();
 
-        //상태를 죽음 상태로 바꾸기
-        ChangeState(EnemyState.Dead);
+        //콜라이더 비활성화
+        GetComponent<Collider>().enabled = false;
 
         //보상 지급
         //경험치
@@ -440,16 +157,6 @@ public class EnemyController : MonoBehaviour, IDamagable
             }
         }
         */
-
-        //파괴 대신 
-        //네비게이션 중지
-        _agent.isStopped = true;
-        //콜라이더 비활성화
-        GetComponent<Collider>().enabled = false;
-        
-
-        //애니메이션 재생
-        _animator.SetTrigger(_hashDie);
     }
 
     /// <summary>
@@ -501,10 +208,5 @@ public class EnemyController : MonoBehaviour, IDamagable
                 new Vector3(healthPercentage, 0.12f, 0.12f)
             );
         }
-    }
-
-    void IDamagable.Die()
-    {
-        Die();
     }
 }

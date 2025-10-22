@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ba03f3a7d3a176409c3c8f8913e59cf, type: 3}
-  m_Name: Enemy_1
+  m_Name: TestEnemy_Green
   m_EditorClassIdentifier: 
-  _name: BurnEnemy
-  _prefab: {fileID: 3190672300473458601, guid: fcf069b250b7b1d4d9ebb4126c1e4145, type: 3}
+  _name: RootEnemy
+  _prefab: {fileID: 1086406898281672714, guid: 985c6d91d284545468a517678cce7e47, type: 3}
   _maxHp: 100
   _moveSpeed: 5
   _atk: 5
@@ -32,3 +32,4 @@ MonoBehaviour:
   _epicExpMultirlier: 2
   _epicGoldMultirlier: 2
   _specialAttackCoolTime: 2
+  _specialAttack: {fileID: 11400000, guid: bf5c5e3dfe6cbbd4ab80b28ccb91b1e4, type: 2}
