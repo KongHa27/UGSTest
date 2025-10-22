@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.AI;
 
 /// <summary>
 /// 기본 적 클래스
@@ -20,12 +19,6 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     [Header("----- 에픽 몬스터 -----")]
     [SerializeField] SpecialAttackBase _specialAttack;
-
-    [Header("----- 에픽 몬스터 스탯 배수 -----")]
-    [SerializeField] float _epicHpMultiplier;   //체력 배수
-    [SerializeField] float _epicAtkMultiplier;  //공격력 배수
-    [SerializeField] int _epicExpMultiplier;  //보상 경험치 배수
-    [SerializeField] int _epicGoldMultiplier;   //보상 골드 배수
 
     // 이벤트 //
     public event Action OnInitialized;
@@ -62,13 +55,13 @@ public class EnemyController : MonoBehaviour, IDamageable
         _specialAttack = specialAttack;
 
         //스탯 초기화
-        _maxHp = _data.MaxHp * (_isEpic ? _epicHpMultiplier : 1);
+        _maxHp = _data.MaxHp * (_isEpic ? _data.EpicHpMultiplier : 1);
         _curHp = _maxHp;
 
-        _atk = _data.Atk * (_isEpic ? _epicAtkMultiplier : 1);
+        _atk = _data.Atk * (_isEpic ? _data.EpicAtkMultiplier : 1);
 
-        _expReward = _data.RewardExp * (_isEpic ? _epicExpMultiplier : 1);
-        _goldReward = _data.RewardGold * (_isEpic ? _epicGoldMultiplier : 1);
+        _expReward = _data.RewardExp * (_isEpic ? _data.EpicExpMultiplier : 1);
+        _goldReward = _data.RewardGold * (_isEpic ? _data.EpicGoldMultiplier : 1);
 
         if (_isEpic)
         {

@@ -41,7 +41,7 @@ public class SA_Earth : SpecialAttackBase
         GameObject projectileGO = Instantiate(_projectilePrefab, spawnPos, spawnRot);
 
         //생성된 화염구를 초기화
-        ProjectileController controller = projectileGO.GetComponent<ProjectileController>();
+        EnemyProjectile controller = projectileGO.GetComponent<EnemyProjectile>();
         if (controller != null)
         {
             controller.Initialize(_projectileSpeed, this);

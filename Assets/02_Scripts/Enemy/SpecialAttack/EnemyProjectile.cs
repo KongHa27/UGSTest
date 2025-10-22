@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ProjectileController : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
     [SerializeField] float _speed;
     [SerializeField] Rigidbody _rb;
@@ -38,9 +38,16 @@ public class ProjectileController : MonoBehaviour
 
             //Player 스크립트에서  처리
             IMonsterDamageable player = other.GetComponent<IMonsterDamageable>();
-            if (player != null && _specialAttack != null)
+            if (player != null)
             {
-                player.ApplySpecialEffect(_specialAttack);
+                if (_specialAttack != null)
+                {
+                    player.ApplySpecialEffect(_specialAttack);
+                }
+                else
+                {
+                    //player.TakeDamage();
+                }
             }
 
             Destroy(gameObject);

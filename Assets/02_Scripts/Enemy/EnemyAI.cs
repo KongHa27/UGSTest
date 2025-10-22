@@ -1,4 +1,6 @@
 using System.Collections;
+using TMPro.EditorUtilities;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -32,6 +34,12 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] Transform _target;
     [SerializeField] LayerMask _playerLayerMask;
     [SerializeField] SpecialAttackBase _specialAttack;
+    [SerializeField] float _targetHeightOffset = 1.1f;      //타겟 높이 보정 값
+
+    [Header("----- 원거리 전투 전용 -----")]
+    [SerializeField] GameObject _projectile;
+    [SerializeField] float _projectileSpeed = 0;
+    [SerializeField] Vector3 _rangedAttackFirePos;
 
     EnemyData _data;
     Vector3 _spawnPos;      //스폰될 때의 위치
@@ -68,7 +76,15 @@ public class EnemyAI : MonoBehaviour
         _isActive = true;
         _curState = EnemyState.Idle;
 
+        _data = _controller.Data;
         _specialAttack = _controller.SpecialAttack;
+
+        if (_agent != null)
+        {
+            _agent.speed = _data.MoveSpeed;
+            float targetStoppingDistance = Mathf.Max(_agent.stoppingDistance, _data.AttackRange * 0.9f);
+            _agent.stoppingDistance = targetStoppingDistance;
+        }
     }
 
     private void Update()
@@ -100,7 +116,7 @@ public class EnemyAI : MonoBehaviour
     void UpdateIdleState()
     {
         //감지 범위 내에서 플레이어를 찾는다.
-        Collider[] colliders = Physics.OverlapSphere(transform.position, _controller.Data.DetectionRange, _playerLayerMask);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, _data.DetectionRange, _playerLayerMask);
 
         //플레이어를 찾으면
         if (colliders.Length > 0)
@@ -119,12 +135,11 @@ public class EnemyAI : MonoBehaviour
                 {
                     _controller.Group.ShareAggro(_target);
                 }
-
                 return;
             }
         }
 
-        //Idle 상태에서 3초가 지나면
+        //Idle 상태에서 5초가 지나면
         _backToSpawnTimer += Time.deltaTime;
         if (_backToSpawnTimer >= 5)
         {
@@ -199,7 +214,7 @@ public class EnemyAI : MonoBehaviour
         if (!_controller.Group.HasAggro)
         {
             //자신과 타겟 사이의 거리가 감지 범위보다 크다면
-            if (distance > _controller.Data.ChaseDistance)
+            if (distance > _data.ChaseDistance)
             {
                 Debug.Log("타겟을 찾을 수 없음. 추격 중지");
 
@@ -230,7 +245,7 @@ public class EnemyAI : MonoBehaviour
 
         //타겟을 바라보도록 설정
         Vector3 changePos = _target.position;
-        changePos.y += 1f;
+        changePos.y += _targetHeightOffset;
         transform.LookAt(changePos);
 
         //위치는 제자리 고정
@@ -243,7 +258,7 @@ public class EnemyAI : MonoBehaviour
             //특수 공격 실행
             PerformSpecialAttack();
         }
-        //공격 쿨타임이 다 찼다면
+        //일반 공격 쿨타임이 다 찼다면
         else if (Time.time >= _lastAttackTime + _data.AttackCoolTime)
         {
             //일반 공격 실행
@@ -283,13 +298,51 @@ public class EnemyAI : MonoBehaviour
         _lastAttackTime = Time.time;
         _animator.SetTrigger(_hashAttack);
 
+        switch (_data.AttackType)
+        {
+            case BasicAttackType.Melee:
+                PerformMeleeAttack();
+                break;
+            case BasicAttackType.Ranged:
+                PerformRangedAttack();
+                break;
+            default:
+                break;
+        }
+    }
+
+    /// <summary>
+    /// 근거리 일반 공격 실행 함수
+    /// </summary>
+    void PerformMeleeAttack()
+    {
         IMonsterDamageable damageable = _target.GetComponent<IMonsterDamageable>();
 
         if (damageable != null)
         {
             damageable.TakeDamage(_controller.Atk);
-            Debug.Log("공격!! 데미지 : " + _controller.Atk);
+            Debug.Log("근거리 공격!! 데미지 : " + _controller.Atk);
         }
+    }
+
+    /// <summary>
+    /// 원거리 일반 공격 실행 함수
+    /// </summary>
+    void PerformRangedAttack()
+    {
+        //발사 지점이 null이면 기본 발사 지점 구하기
+        if (_rangedAttackFirePos == null)
+        {
+            _rangedAttackFirePos = transform.position + Vector3.up * _targetHeightOffset;
+        }
+
+        //타격 지점
+        Vector3 targetPos = _target.position + Vector3.up * _targetHeightOffset;
+
+        //방향 구하기
+        Vector3 dir = targetPos - _rangedAttackFirePos;
+
+
     }
 
     /// <summary>
@@ -337,11 +390,15 @@ public class EnemyAI : MonoBehaviour
 
     void OnHit()
     {
-
+        if (_curState == EnemyState.Dead) return;
+        _animator.SetTrigger(_hashTakeHit);
     }
 
     void OnDeath()
     {
+        ChangeState(EnemyState.Dead);
 
+        _agent.isStopped = true;
+        _animator.SetTrigger(_hashDie);
     }
 }

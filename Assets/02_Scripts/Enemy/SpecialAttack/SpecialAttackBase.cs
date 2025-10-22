@@ -13,7 +13,7 @@ public abstract class SpecialAttackBase : ScriptableObject
     [SerializeField] float _coolTime = 10f;         //특수 공격 쿨타임
 
     [Header("----- 발사체 발사 지점 -----")]
-    [SerializeField] protected Transform cachedFirePos;
+    [SerializeField] protected Transform _cachedFirePos;
 
     // 프로퍼티 //
     public GameObject EpicEffect => _epicEffect;
@@ -62,9 +62,9 @@ public abstract class SpecialAttackBase : ScriptableObject
     /// <returns></returns>
     protected Transform GetFirePos(Transform attacker)
     {
-        if (cachedFirePos != null)
+        if (_cachedFirePos != null)
         {
-            return cachedFirePos;
+            return _cachedFirePos;
         }
 
         Transform firePos = attacker.Find("firePos");
@@ -75,9 +75,9 @@ public abstract class SpecialAttackBase : ScriptableObject
             return null;
         }
 
-        cachedFirePos = firePos;
+        _cachedFirePos = firePos;
 
-        return cachedFirePos;
+        return _cachedFirePos;
     }
 
     /// <summary>

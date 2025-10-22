@@ -44,11 +44,24 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        //목록에서 랜덤으로 한 명을 에픽 후보로 선정
         int epicCandidateIndex = -1;
+
+        //CanBeEpic인 적들만 따로 추리기
+        List<int> epicIdxs = new List<int>();
+        for (int i = 0; i < enemiesToSpawn.Count; i++)
+        {
+            if (enemiesToSpawn[i].CanBeEpic)
+            {
+                epicIdxs.Add(i);
+            }
+        }
+
+        //CanBeEpic인 적들 중에서 한 명만 램덤으로 뽑기
         if (enemiesToSpawn.Count > 0)
         {
-            epicCandidateIndex = Random.Range(0, enemiesToSpawn.Count);
+            int ran = Random.Range(0, epicIdxs.Count);
+
+            epicCandidateIndex = epicIdxs[ran];
         }
 
         //몬스터 실제 생성
