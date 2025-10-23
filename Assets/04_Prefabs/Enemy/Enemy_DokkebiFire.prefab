@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: -5797160952345572285}
   - component: {fileID: 3570592473080424248}
   - component: {fileID: 5177687207222082051}
+  - component: {fileID: -6737644167888413015}
   m_Layer: 0
   m_Name: Enemy_DokkebiFire
   m_TagString: Untagged
@@ -438,16 +439,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 4e564ac51e7d83c4499fa0488e26884b, type: 2}
-  _agent: {fileID: -5797160952345572285}
-  _target: {fileID: 0}
-  _animator: {fileID: 3570592473080424248}
+  _group: {fileID: 0}
+  _specialAttack: {fileID: 0}
+--- !u!114 &-6737644167888413015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8314872689418627326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143adaa9e5e78cd44a5186c306470d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 0}
+  _controller: {fileID: 0}
+  _animator: {fileID: 0}
   _curState: 0
+  _target: {fileID: 0}
   _playerLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
+  _basicAttack: 0
   _specialAttack: {fileID: 0}
-  _dropChance: 0.5
-  _group: {fileID: 0}
+  _targetHeightOffset: 1.1
+  _projectileFirePos: {fileID: 0}
 --- !u!1 &8527512564750005010
 GameObject:
   m_ObjectHideFlags: 0

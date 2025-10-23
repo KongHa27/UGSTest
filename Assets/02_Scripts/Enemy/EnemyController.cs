@@ -8,31 +8,31 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour, IDamageable
 {
     [Header("----- 컴포넌트 -----")]
-    [SerializeField] EnemyData _data;
+    [SerializeField] EnemyData _data;       //적 데이터
 
     [Header("----- 드랍 설정 -----")]
     //[SerializeField] private ItemDropTableData _dropTable;         // 아이템 드랍 테이블
     //[SerializeField][Range(0f, 1f)] private float _dropChance = 0.5f;  // 드랍 확률 (50%)
 
     [Header("----- 현재 속한 그룹 -----")]
-    [SerializeField] EnemyGroup _group;
+    [SerializeField] EnemyGroup _group;     //현재 속한 그룹
 
     [Header("----- 에픽 몬스터 -----")]
-    [SerializeField] SpecialAttackBase _specialAttack;
+    [SerializeField] SpecialAttackBase _specialAttack;  //특수 공격 데이터
 
     // 이벤트 //
-    public event Action OnInitialized;
-    public event Action OnHit;
-    public event Action OnDie;
+    public event Action OnInitialized;      //초기화 완료 이벤트
+    public event Action OnHit;              //피격 이벤트
+    public event Action OnDie;              //죽음 이벤트
 
     // 현재 상태 스탯 //
-    bool _isEpic = false;
-    float _maxHp;
-    float _curHp;
-    float _atk;
+    bool _isEpic = false;   //에픽 몬스터 여부
+    float _maxHp;           //최대 체력
+    float _curHp;           //현재 체력
+    float _atk;             //공격력
 
-    int _expReward;
-    int _goldReward;
+    int _expReward;         //보상 경험치
+    int _goldReward;        //보상 골드
 
 
     // 프로퍼티 //
@@ -63,12 +63,12 @@ public class EnemyController : MonoBehaviour, IDamageable
         _expReward = _data.RewardExp * (_isEpic ? _data.EpicExpMultiplier : 1);
         _goldReward = _data.RewardGold * (_isEpic ? _data.EpicGoldMultiplier : 1);
 
+        //에픽 몬스터 크기 변경 및 이펙트 (오브) 생성
         if (_isEpic)
         {
             transform.localScale *= 1.2f;
             Debug.Log($"{name}이(가) {_specialAttack.Type}타입 에픽 몬스터로 등장!");
 
-            //에픽 몬스터 이펙트 (오브) 생성
             if (_specialAttack != null && _specialAttack.EpicEffect != null)
             {
                 int orbCount = 2;
@@ -93,6 +93,7 @@ public class EnemyController : MonoBehaviour, IDamageable
             }
         }
 
+        //초기화 완료 이벤트 발행
         OnInitialized?.Invoke();
     }
 

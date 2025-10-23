@@ -18,11 +18,15 @@ public class EnemyData : ScriptableObject
     [SerializeField] float _chaseDistance;          //추격 유지 사거리
 
     [Header("----- 전투 -----")]
-    [SerializeField] BasicAttackType _attackType;   //일반 공격 타입 (원거리, 근거리)
+    [SerializeField] BasicAttackType _basicAttackType;  //일반 공격 타입 (원거리, 근거리)
     [SerializeField] float _attackRange;            //공격 사거리
     [SerializeField] float _attackCoolTime;         //공격 쿨타임
     [SerializeField] int _rewardExp;                //경험치 보상
     [SerializeField] int _rewardGold;               //골드 보상
+
+    [Header("----- 원거리 기본 공격 -----")]
+    [SerializeField] GameObject _projectilePrefab;
+    [SerializeField] float _projrctileSpeed = 12f;
 
     [Header("----- 에픽 몬스터 스탯 배수 -----")]
     [SerializeField] bool _canBeEpic;
@@ -39,11 +43,13 @@ public class EnemyData : ScriptableObject
     public float Atk => _atk;
     public float DetectionRange => _detectionRange;
     public float ChaseDistance => _chaseDistance;
-    public BasicAttackType AttackType => _attackType;
+    public BasicAttackType BasicAttackType => _basicAttackType;
     public float AttackRange => _attackRange;
     public float AttackCoolTime => _attackCoolTime;
     public int RewardExp => _rewardExp;
     public int RewardGold => _rewardGold;
+    public GameObject ProjectilePrefab => _projectilePrefab;
+    public float ProjectileSpeed => _projrctileSpeed;
 
     // - 에픽 프로퍼티 - //
     public bool CanBeEpic => _canBeEpic;

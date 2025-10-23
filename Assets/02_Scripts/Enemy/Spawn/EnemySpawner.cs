@@ -57,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
         //CanBeEpic인 적들 중에서 한 명만 램덤으로 뽑기
-        if (enemiesToSpawn.Count > 0)
+        if (epicIdxs.Count > 0)
         {
             int ran = Random.Range(0, epicIdxs.Count);
 

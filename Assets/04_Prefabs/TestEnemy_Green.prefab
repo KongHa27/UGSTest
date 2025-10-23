@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1429831408492588473}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 5144325645459885162}
   - component: {fileID: 7651463143537160834}
   - component: {fileID: 9187424817401064311}
+  - component: {fileID: 4187619612418438809}
   - component: {fileID: 5826251144219245232}
   m_Layer: 0
   m_Name: TestEnemy_Green
@@ -144,6 +145,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2929698890495163649}
+  - {fileID: 8493592020548219809}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6627956684015111337
@@ -259,6 +261,30 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: 51f200b33d887ee4086fa83bbd886732, type: 2}
   _group: {fileID: 0}
   _specialAttack: {fileID: 0}
+--- !u!114 &4187619612418438809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086406898281672714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143adaa9e5e78cd44a5186c306470d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 7651463143537160834}
+  _controller: {fileID: 9187424817401064311}
+  _animator: {fileID: 5826251144219245232}
+  _curState: 0
+  _target: {fileID: 0}
+  _playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _basicAttack: 0
+  _specialAttack: {fileID: 0}
+  _targetHeightOffset: 0
+  _projectileFirePos: {fileID: 8493592020548219809}
 --- !u!95 &5826251144219245232
 Animator:
   serializedVersion: 7
@@ -281,3 +307,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &4462028088275502826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8493592020548219809}
+  m_Layer: 0
+  m_Name: projectileFirePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8493592020548219809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4462028088275502826}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.37, z: 0.69}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3466707713469223482}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

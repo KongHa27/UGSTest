@@ -16,13 +16,18 @@ MonoBehaviour:
   _prefab: {fileID: 3190672300473458601, guid: fcf069b250b7b1d4d9ebb4126c1e4145, type: 3}
   _maxHp: 100
   _moveSpeed: 5
-  _atk: 5
+  _atk: 7
   _detectionRange: 8
   _chaseDistance: 10
-  _patrolRadius: 3
-  _patrolWaitTime: 1
-  _attackType: 1
+  _basicAttackType: 1
   _attackRange: 7
   _attackCoolTime: 3
   _rewardExp: 5
   _rewardGold: 5
+  _projectilePrefab: {fileID: 4172665231527622664, guid: 41d5b58409b4ff146b917d75752dff56, type: 3}
+  _projrctileSpeed: 12
+  _canBeEpic: 1
+  _epicHpMultiplier: 2
+  _epicAtkMultiplier: 2
+  _epicExpMultirlier: 2
+  _epicGoldMultirlier: 2

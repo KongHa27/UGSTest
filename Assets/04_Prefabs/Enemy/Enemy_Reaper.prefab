@@ -2258,6 +2258,7 @@ GameObject:
   - component: {fileID: -2948310146884462789}
   - component: {fileID: 7262634281151457019}
   - component: {fileID: -806775960856583898}
+  - component: {fileID: -2150248777518290356}
   m_Layer: 0
   m_Name: Enemy_Reaper
   m_TagString: Untagged
@@ -2364,6 +2365,30 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: 54a07f45b4111f0488682487d30f784f, type: 2}
   _group: {fileID: 0}
   _specialAttack: {fileID: 0}
+--- !u!114 &-2150248777518290356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428713037589431689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 143adaa9e5e78cd44a5186c306470d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 0}
+  _controller: {fileID: 0}
+  _animator: {fileID: 0}
+  _curState: 0
+  _target: {fileID: 0}
+  _playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _basicAttack: 0
+  _specialAttack: {fileID: 0}
+  _targetHeightOffset: 1.1
+  _projectileFirePos: {fileID: 0}
 --- !u!1 &8217616503447588779
 GameObject:
   m_ObjectHideFlags: 0

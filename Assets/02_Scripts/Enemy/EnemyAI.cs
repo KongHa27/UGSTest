@@ -1,6 +1,4 @@
 using System.Collections;
-using TMPro.EditorUtilities;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,46 +17,47 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] EnemyController _controller;
     [SerializeField] Animator _animator;
 
-    //상태머신
+    /// <summary>
+    /// Enemy 상태 머신 enum
+    /// </summary>
     public enum EnemyState
     {
-        Idle,
-        Chase,
-        Attack,
-        Dead
+        Idle,       //대기
+        Chase,      //추격
+        Attack,     //공격
+        Dead        //죽음
     }
     [SerializeField] EnemyState _curState = EnemyState.Idle;
     public EnemyState CurState => _curState;
 
     [Header("----- 전투 -----")]
-    [SerializeField] Transform _target;
-    [SerializeField] LayerMask _playerLayerMask;
-    [SerializeField] SpecialAttackBase _specialAttack;
-    [SerializeField] float _targetHeightOffset = 1.1f;      //타겟 높이 보정 값
+    [SerializeField] Transform _target;                 //타겟(플레이어) 트랜스폼
+    [SerializeField] LayerMask _playerLayerMask;        //플레이어 레이어 마스크
+    [SerializeField] BasicAttackType _basicAttack;      //일반 공격 타입
+    [SerializeField] SpecialAttackBase _specialAttack;  //특수 공격 데이터
 
-    [Header("----- 원거리 전투 전용 -----")]
-    [SerializeField] GameObject _projectile;
-    [SerializeField] float _projectileSpeed = 0;
-    [SerializeField] Vector3 _rangedAttackFirePos;
+    [Header("----- 원거리 기본 공격 -----")]
+    [SerializeField] Transform _projectileFirePos;      //발사체 발사(생성) 위치
+    [SerializeField] float _heightOffset = 1.1f;  //높이 보정 값
 
-    EnemyData _data;
+    EnemyData _data;        //적 데이터
     Vector3 _spawnPos;      //스폰될 때의 위치
-    bool _isActive = false;
+    bool _isActive = false; //AI 활성화 여부
 
     // 타이머 및 쿨타임 관리 //
-    float _lastAttackTime;
-    float _lastSpecialAttackTime;
-    float _backToSpawnTimer;
-    float _pathCheckTimer;
-    int _pathCheckCount = 0;
+    float _lastAttackTime;          //마지막 일반 공격 시간
+    float _lastSpecialAttackTime;   //마지막 특수 공격 시간
+    float _backToSpawnTimer;        //원위치로 돌아가기까지의 타이머
+    float _pathCheckTimer;          //NavMesh 길을 체크하는 타이머
+    int _pathCheckCount = 0;        //NavMesh 길을 체크한 횟수
 
     // 애니메이터 파라미터 해시값 //
-    private readonly int _hashMoveSpeed = Animator.StringToHash("MoveSpeed");
-    private readonly int _hashAttack = Animator.StringToHash("Attack");
-    private readonly int _hashSpecialAttack = Animator.StringToHash("SpecialAttack");
-    private readonly int _hashSpecialAttackID = Animator.StringToHash("SpecialAttackID");
-    private readonly int _hashTakeHit = Animator.StringToHash("TakeHit");
-    private readonly int _hashDie = Animator.StringToHash("Die");
+    private readonly int _hashMoveSpeed = Animator.StringToHash("MoveSpeed");               //이동
+    private readonly int _hashAttack = Animator.StringToHash("Attack");                     //일반 공격
+    private readonly int _hashSpecialAttack = Animator.StringToHash("SpecialAttack");       //특수 공격
+    private readonly int _hashSpecialAttackID = Animator.StringToHash("SpecialAttackID");   //특수 공격 타입에 따른 애니메이션 ID
+    private readonly int _hashTakeHit = Animator.StringToHash("TakeHit");                   //피격
+    private readonly int _hashDie = Animator.StringToHash("Die");                           //죽음ㄴ
 
     private void Awake()
     {
@@ -71,12 +70,17 @@ public class EnemyAI : MonoBehaviour
         _spawnPos = transform.position;
     }
 
+    /// <summary>
+    /// Enemy가 Initialize된 후 움직이도록 하는 함수
+    /// </summary>
     void StartAI()
     {
         _isActive = true;
         _curState = EnemyState.Idle;
 
         _data = _controller.Data;
+        _basicAttack = _data.BasicAttackType;
+
         _specialAttack = _controller.SpecialAttack;
 
         if (_agent != null)
@@ -211,7 +215,7 @@ public class EnemyAI : MonoBehaviour
         //자신과 타겟 사이의 거리 구하기
         float distance = Vector3.Distance(transform.position, _target.position);
 
-        if (!_controller.Group.HasAggro)
+        if (_controller.Group != null && !_controller.Group.HasAggro)
         {
             //자신과 타겟 사이의 거리가 감지 범위보다 크다면
             if (distance > _data.ChaseDistance)
@@ -244,9 +248,12 @@ public class EnemyAI : MonoBehaviour
         }
 
         //타겟을 바라보도록 설정
-        Vector3 changePos = _target.position;
-        changePos.y += _targetHeightOffset;
-        transform.LookAt(changePos);
+        Vector3 lookDir = _target.position - transform.position;
+        lookDir.y = 0f;
+        if (lookDir != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(lookDir);
+        }
 
         //위치는 제자리 고정
         _agent.SetDestination(transform.position);
@@ -298,7 +305,8 @@ public class EnemyAI : MonoBehaviour
         _lastAttackTime = Time.time;
         _animator.SetTrigger(_hashAttack);
 
-        switch (_data.AttackType)
+        //일반 공격 타입에 따라 공격 함수 실행
+        switch (_basicAttack)
         {
             case BasicAttackType.Melee:
                 PerformMeleeAttack();
@@ -316,6 +324,8 @@ public class EnemyAI : MonoBehaviour
     /// </summary>
     void PerformMeleeAttack()
     {
+        if (_target == null) return;
+
         IMonsterDamageable damageable = _target.GetComponent<IMonsterDamageable>();
 
         if (damageable != null)
@@ -330,19 +340,28 @@ public class EnemyAI : MonoBehaviour
     /// </summary>
     void PerformRangedAttack()
     {
+        if ( _target == null) return;
+
         //발사 지점이 null이면 기본 발사 지점 구하기
-        if (_rangedAttackFirePos == null)
-        {
-            _rangedAttackFirePos = transform.position + Vector3.up * _targetHeightOffset;
-        }
+        Vector3 spawnPos = _projectileFirePos != null ? _projectileFirePos.position :
+            transform.position + Vector3.up * _heightOffset;
 
         //타격 지점
-        Vector3 targetPos = _target.position + Vector3.up * _targetHeightOffset;
+        Vector3 targetPos = _target.position + Vector3.up * _heightOffset;
 
         //방향 구하기
-        Vector3 dir = targetPos - _rangedAttackFirePos;
+        Vector3 dir = (targetPos - spawnPos).normalized;
 
+        Quaternion spawnRot = Quaternion.LookRotation(dir, Vector3.up);
 
+        //발사체 생성 및 초기화
+        GameObject projectileGO = Instantiate(_data.ProjectilePrefab, spawnPos, spawnRot);
+
+        EnemyProjectile projectile = projectileGO.GetComponent<EnemyProjectile>();
+        if (projectile != null)
+        {
+            projectile.Initialize(_data.ProjectileSpeed, _controller.Atk, _data.AttackRange);
+        }
     }
 
     /// <summary>
@@ -388,17 +407,25 @@ public class EnemyAI : MonoBehaviour
     }
     #endregion
 
+    /// <summary>
+    /// 피격 시 애니메이션 트리거를 작동하는 함수
+    /// </summary>
     void OnHit()
     {
         if (_curState == EnemyState.Dead) return;
         _animator.SetTrigger(_hashTakeHit);
     }
 
+    /// <summary>
+    /// 사망 시 호출되는 함수
+    /// 상태 변경, NavMesh 끄기, 애니메이션 트리거 작동
+    /// </summary>
     void OnDeath()
     {
         ChangeState(EnemyState.Dead);
 
         _agent.isStopped = true;
+
         _animator.SetTrigger(_hashDie);
     }
 }

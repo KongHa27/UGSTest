@@ -42,7 +42,7 @@ public class SA_Fire : SpecialAttackBase
         EnemyProjectile controller = projectileGO.GetComponent<EnemyProjectile>();
         if (controller != null)
         {
-            controller.Initialize(_projectileSpeed, this);
+            controller.InitializeSA(_projectileSpeed, this);
         }
     }
 }
