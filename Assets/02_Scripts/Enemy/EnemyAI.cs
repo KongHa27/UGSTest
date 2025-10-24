@@ -36,9 +36,12 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] BasicAttackType _basicAttack;      //일반 공격 타입
     [SerializeField] SpecialAttackBase _specialAttack;  //특수 공격 데이터
 
+    [Header("----- 근거리 기본 공격 -----")]
+    [SerializeField] TargetDetector _meleeDetector;    //근거리 타격 지점
+
     [Header("----- 원거리 기본 공격 -----")]
     [SerializeField] Transform _projectileFirePos;      //발사체 발사(생성) 위치
-    [SerializeField] float _heightOffset = 1.1f;  //높이 보정 값
+    [SerializeField] float _heightOffset = 1.1f;        //높이 보정 값
 
     EnemyData _data;        //적 데이터
     Vector3 _spawnPos;      //스폰될 때의 위치
@@ -88,6 +91,11 @@ public class EnemyAI : MonoBehaviour
             _agent.speed = _data.MoveSpeed;
             float targetStoppingDistance = Mathf.Max(_agent.stoppingDistance, _data.AttackRange * 0.9f);
             _agent.stoppingDistance = targetStoppingDistance;
+        }
+
+        if (_basicAttack == BasicAttackType.Melee && _meleeDetector != null)
+        {
+            _meleeDetector.Initialize(_controller.Atk);
         }
     }
 
@@ -309,29 +317,12 @@ public class EnemyAI : MonoBehaviour
         switch (_basicAttack)
         {
             case BasicAttackType.Melee:
-                PerformMeleeAttack();
                 break;
             case BasicAttackType.Ranged:
                 PerformRangedAttack();
                 break;
             default:
                 break;
-        }
-    }
-
-    /// <summary>
-    /// 근거리 일반 공격 실행 함수
-    /// </summary>
-    void PerformMeleeAttack()
-    {
-        if (_target == null) return;
-
-        IMonsterDamageable damageable = _target.GetComponent<IMonsterDamageable>();
-
-        if (damageable != null)
-        {
-            damageable.TakeDamage(_controller.Atk);
-            Debug.Log("근거리 공격!! 데미지 : " + _controller.Atk);
         }
     }
 
@@ -406,6 +397,22 @@ public class EnemyAI : MonoBehaviour
         return path.status == NavMeshPathStatus.PathComplete;
     }
     #endregion
+
+    /// <summary>
+    /// 애니메이션 이벤트에서 호출할
+    /// 근거리 타격 감지 콜라이더 활성화하는 함수
+    /// </summary>
+    public void EnableMeleeDetector()
+    {
+        if (_meleeDetector != null)
+        {
+            _meleeDetector.EnableDetector();
+        }
+        else
+        {
+            Debug.Log("MeleeDetector 없음");
+        }
+    }
 
     /// <summary>
     /// 피격 시 애니메이션 트리거를 작동하는 함수

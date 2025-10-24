@@ -10,7 +10,7 @@ using UnityEngine;
 /// - 사망 처리
 /// - 골드 관리
 /// </summary>
-public class PlayerCombat : MonoBehaviour, IDamageable
+public class PlayerCombat : MonoBehaviour, IMonsterDamageable
 {
     [Header("참조")]
     [SerializeField] private PlayerCharacter _playerCharacter;

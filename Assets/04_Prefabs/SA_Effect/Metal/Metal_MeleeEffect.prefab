@@ -10294,7 +10294,7 @@ GameObject:
   - component: {fileID: 1750316197029174887}
   - component: {fileID: 1750316197029174884}
   m_Layer: 0
-  m_Name: Metal_AttackEffect
+  m_Name: Metal_MeleeEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
