@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 700476918095160832}
   - component: {fileID: 926972419540037795}
   - component: {fileID: 6517001683069336552}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4854,7 +4854,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8125273079069608207}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4886,7 +4886,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5383519357671325165}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4925,9 +4925,9 @@ GameObject:
   - component: {fileID: -2402762303362114179}
   - component: {fileID: 6728930300259899002}
   - component: {fileID: 4068332378325863513}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireEffect
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9795,7 +9795,7 @@ GameObject:
   - component: {fileID: 4467689950626339640}
   - component: {fileID: 1885705237453706535}
   - component: {fileID: 1214333754221446309}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14640,7 +14640,7 @@ GameObject:
   - component: {fileID: 1979569973507530817}
   - component: {fileID: 4381467119081336073}
   - component: {fileID: 2739307818857538907}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireDark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19485,7 +19485,7 @@ GameObject:
   - component: {fileID: 676559214017544954}
   - component: {fileID: 1316771341238765176}
   - component: {fileID: 8754354826250544595}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}

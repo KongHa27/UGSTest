@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.AI;
 
 /// <summary>
 /// 플레이어 전투 시스템
@@ -14,6 +16,7 @@ public class PlayerCombat : MonoBehaviour, IMonsterDamageable
 {
     [Header("참조")]
     [SerializeField] private PlayerCharacter _playerCharacter;
+    [SerializeField] PlayerStateController _stateCotroller;
 
     private void Awake()
     {
@@ -122,30 +125,39 @@ public class PlayerCombat : MonoBehaviour, IMonsterDamageable
     {
         Debug.Log("빙결 효과 시작");
 
+        _stateCotroller.SetFreeze(true);
+
         GameObject debuffEffect = null;
         if (attack.DebuffEffect != null)
         {
             debuffEffect = Instantiate(attack.DebuffEffect, transform);
         }
 
-        // TODO: 플레이어 이동 불가 처리
         Debug.Log($"빙결 중 ({attack.FreezeDuration}초)");
-
         yield return new WaitForSeconds(attack.FreezeDuration);
+        
         Destroy(debuffEffect);
+        _stateCotroller.SetFreeze(false);
 
         // 둔화 효과
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        float originalSpeed = agent.speed;
+
         GameObject additionalEffect = null;
         if (attack.AdditionalEffect != null)
         {
             additionalEffect = Instantiate(attack.AdditionalEffect, transform);
         }
+        
+        agent.speed = originalSpeed * attack.SlowPercent;
 
         Debug.Log($"둔화 중 ({attack.SlowDuration}초)");
-        // TODO: 이동속도 감소
 
         yield return new WaitForSeconds(attack.SlowDuration);
+
+        agent.speed = originalSpeed;
         Destroy(additionalEffect);
+
         Debug.Log("빙결 효과 종료");
     }
 
@@ -153,17 +165,21 @@ public class PlayerCombat : MonoBehaviour, IMonsterDamageable
     {
         Debug.Log("실명 효과 시작");
 
+        _stateCotroller.SetSilence(true);
+
         GameObject debuffEffect = null;
         if (attack.DebuffEffect != null)
         {
             debuffEffect = Instantiate(attack.DebuffEffect, transform);
         }
 
-        // TODO: 시야 감소 + 침묵
+        // TODO: 시야 감소(UI)
         Debug.Log($"침묵 중 ({attack.SilenceDuration}초)");
 
         yield return new WaitForSeconds(attack.SilenceDuration);
         Destroy(debuffEffect);
+        _stateCotroller.SetSilence(false);
+
         Debug.Log("실명 효과 종료");
     }
 
@@ -171,17 +187,36 @@ public class PlayerCombat : MonoBehaviour, IMonsterDamageable
     {
         Debug.Log("속박 효과 시작");
 
+        _stateCotroller.SetRoot(true);
+
         GameObject debuffEffect = null;
         if (attack.DebuffEffect != null)
         {
             debuffEffect = Instantiate(attack.DebuffEffect, transform);
         }
 
-        // TODO: 이동 불가
         Debug.Log($"속박 중 ({attack.RootDuration}초)");
 
         yield return new WaitForSeconds(attack.RootDuration);
         Destroy(debuffEffect);
+        _stateCotroller.SetRoot(false);
+
+        //약화
+        GameObject additionalEffect = null;
+        if (attack.AdditionalEffect != null)
+        {
+            additionalEffect = Instantiate(attack.AdditionalEffect, transform);
+        }
+
+        float originalArmor = _playerCharacter.CurrentStats.Armor;
+        float weakenedArmor = originalArmor * (1f - attack.DefenseDebuffPercent);
+        _playerCharacter.CurrentStats.Armor = weakenedArmor;
+
+        yield return new WaitForSeconds(attack.DefenseDebuffDuration);
+
+        _playerCharacter.CurrentStats.Armor = originalArmor;
+        Destroy(additionalEffect);
+
         Debug.Log("속박 효과 종료");
     }
 
@@ -194,12 +229,11 @@ public class PlayerCombat : MonoBehaviour, IMonsterDamageable
             Instantiate(attack.HitEffect, transform.position, Quaternion.identity);
         }
 
+        _stateCotroller.SetKnockState(true);
+
         // 넉백 적용
-        /*if (_rb != null && attack.KnockbackPower > 0)
-        {
-            Vector3 knockbackDirection = -transform.forward;
-            _rb.AddForce(knockbackDirection * attack.KnockbackPower, ForceMode.Impulse);
-        }*/
+        Vector3 dir = -transform.forward;
+        transform.DOPunchPosition(dir * attack.KnockbackPower, 0.35f, 10, 0.7f);
 
         // 스턴
         GameObject debuffEffect = null;
@@ -208,11 +242,11 @@ public class PlayerCombat : MonoBehaviour, IMonsterDamageable
             debuffEffect = Instantiate(attack.DebuffEffect, transform);
         }
 
-        Debug.Log($"스턴 중 ({attack.StunDuration}초)");
-        // TODO: 행동 불가
+        yield return new WaitForSeconds(0.35f + attack.StunDuration);
 
-        yield return new WaitForSeconds(attack.StunDuration);
         Destroy(debuffEffect);
+
+        _stateCotroller.SetKnockState(false);
         Debug.Log("넉백 효과 종료");
     }
 

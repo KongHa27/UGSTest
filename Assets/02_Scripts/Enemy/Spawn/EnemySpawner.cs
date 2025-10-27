@@ -71,7 +71,7 @@ public class EnemySpawner : MonoBehaviour
 
             //위치 설정
             Vector3 ranPos = transform.position + Random.insideUnitSphere * _spawnRadius;
-            ranPos.y = transform.position.y;
+            ranPos.y = 0;
 
             //프리팹을 생성하고, 그룹 오브젝트의 자식으로 만들기
             GameObject enemy = Instantiate(data.Prefab, ranPos, Quaternion.identity);

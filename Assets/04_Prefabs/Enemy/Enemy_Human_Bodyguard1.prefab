@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &122005806792800465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6170788990169084115}
+  - component: {fileID: 7227488842599461735}
+  - component: {fileID: 8398267240819206181}
+  m_Layer: 0
+  m_Name: TargetDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6170788990169084115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122005806792800465}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1, y: -0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4070146525690663620}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &7227488842599461735
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122005806792800465}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8398267240819206181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122005806792800465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3000fdcf3cded3a44ae3538027ea14bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _detectorColl: {fileID: 7227488842599461735}
 --- !u!1 &126255941005956339
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +497,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1610941678409685151}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -439,7 +506,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.8
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -492,18 +559,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143adaa9e5e78cd44a5186c306470d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agent: {fileID: 0}
-  _controller: {fileID: 0}
-  _animator: {fileID: 0}
+  _agent: {fileID: -3622260650684054076}
+  _controller: {fileID: 8094236093037867607}
+  _animator: {fileID: 6686947072017730056}
   _curState: 0
   _target: {fileID: 0}
   _playerLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   _basicAttack: 0
   _specialAttack: {fileID: 0}
-  _targetHeightOffset: 1.1
+  _meleeDetector: {fileID: 8398267240819206181}
   _projectileFirePos: {fileID: 0}
+  _heightOffset: 1.1
 --- !u!1 &1687686956237674409
 GameObject:
   m_ObjectHideFlags: 0
@@ -2905,6 +2973,7 @@ Transform:
   - {fileID: 5154046223454372515}
   - {fileID: 6070498572727638647}
   - {fileID: 7908799538339114261}
+  - {fileID: 6170788990169084115}
   m_Father: {fileID: 203669979972863711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8682645353539152688

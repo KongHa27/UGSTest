@@ -3,19 +3,21 @@ using UnityEngine.InputSystem.XR;
 
 /// <summary>
 /// 적 발사체 클래스
-/// (이동, 거리 제한) / 
+/// (이동, 거리 제한)
 /// 
 /// TargetDetector와 함께 사용
 /// (타격 판정, 대미지 처리)
 /// </summary>
 public class EnemyProjectile : MonoBehaviour
 {
+    [Header("----- 이동 -----")]
     [SerializeField] float _speed;
     [SerializeField] Rigidbody _rb;
 
+    [Header("----- 특수 공격 -----")]
     [SerializeField] SpecialAttackBase _specialAttack;
 
-    float _maxDistance;
+    [SerializeField] float _maxDistance;
     Vector3 _spawnPos;
     bool _useDistanceLimit;
 
@@ -30,17 +32,38 @@ public class EnemyProjectile : MonoBehaviour
     /// <summary>
     /// 특수 공격 발사체를 초기화하는 함수
     /// </summary>
-    /// <param name="speed"></param>
-    /// <param name="specialAttack"></param>
     public void InitializeSA(float speed, SpecialAttackBase specialAttack)
     {
         _speed = speed;
+        _specialAttack = specialAttack;
+
         _rb.linearVelocity = transform.forward * _speed;
 
         TargetDetector detector = GetComponent<TargetDetector>();
         if (detector != null)
         {
-            detector.InitializeSA(specialAttack);
+            detector.InitializeSA(_specialAttack);
+            detector.EnableDetector();
+        }
+
+        Destroy(gameObject, 5f);
+    }
+
+    /// <summary>
+    /// 특수 공격 망치를 초기화하는 함수
+    /// </summary>
+
+    public void InitializeHammer(float speed, SpecialAttackBase specialAttack)
+    {
+        _speed = speed;
+        _specialAttack = specialAttack;
+
+        _rb.linearVelocity = Vector3.down * _speed;
+
+        TargetDetector detector = GetComponent<TargetDetector>();
+        if (detector != null)
+        {
+            detector.InitializeSA(_specialAttack);
             detector.EnableDetector();
         }
 
@@ -50,9 +73,6 @@ public class EnemyProjectile : MonoBehaviour
     /// <summary>
     /// 일반 공격 발사체를 초기화하는 함수
     /// </summary>
-    /// <param name="speed"></param>
-    /// <param name="damage"></param>
-    /// <param name="maxDistance"></param>
     public void Initialize(float speed, float damage, float maxDistance)
     {
         _speed = speed;

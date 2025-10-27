@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3333564830528071549}
   - component: {fileID: 6684368819455673638}
   - component: {fileID: 1203258363812589567}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4856,7 +4856,7 @@ GameObject:
   - component: {fileID: 1439400535656998942}
   - component: {fileID: 6275185107763601268}
   - component: {fileID: 7858577737736520759}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9701,7 +9701,7 @@ GameObject:
   - component: {fileID: 7366023154504497895}
   - component: {fileID: 3756548905109481033}
   - component: {fileID: 5945657038610801382}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireDark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14546,7 +14546,7 @@ GameObject:
   - component: {fileID: 3342492730865940266}
   - component: {fileID: 6671331329689950764}
   - component: {fileID: 4366855983552380799}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19392,9 +19392,9 @@ GameObject:
   - component: {fileID: 4278668623257218578}
   - component: {fileID: -8072423700128543154}
   - component: {fileID: 7212155542905661865}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WoodEffect
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

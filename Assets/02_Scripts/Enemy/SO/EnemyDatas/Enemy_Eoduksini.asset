@@ -19,12 +19,14 @@ MonoBehaviour:
   _atk: 5
   _detectionRange: 8
   _chaseDistance: 10
-  _patrolRadius: 3
-  _patrolWaitTime: 1
-  _attackRange: 2
+  _basicAttackType: 1
+  _attackRange: 7
   _attackCoolTime: 3
   _rewardExp: 5
   _rewardGold: 5
+  _projectilePrefab: {fileID: 5140824982369331126, guid: 2a76628e37f590743be0e49f9cdbace8, type: 3}
+  _projrctileSpeed: 12
+  _canBeEpic: 1
   _epicHpMultiplier: 2
   _epicAtkMultiplier: 2
   _epicExpMultirlier: 2

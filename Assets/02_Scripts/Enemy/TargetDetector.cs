@@ -53,8 +53,6 @@ public class TargetDetector : MonoBehaviour
         if (_detectorColl != null)
         {
             _detectorColl.enabled = true;
-            
-            Debug.Log("감지 콜라이더 활성화");
         }
     }
     
@@ -66,8 +64,6 @@ public class TargetDetector : MonoBehaviour
         if (_detectorColl != null)
         {
             _detectorColl.enabled = false;
-
-            Debug.Log("감지 콜라이더 비활성화");
         }
     }
 
@@ -97,6 +93,12 @@ public class TargetDetector : MonoBehaviour
 
                 //타격 성공 시 콜라이더 비활성화
                 DisableDetector();
+
+                //발사체인 경우 파괴
+                if (GetComponent<EnemyProjectile>() != null)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
         //적 동료는 무시
@@ -111,6 +113,7 @@ public class TargetDetector : MonoBehaviour
             if (GetComponent<EnemyProjectile>() != null)
             {
                 Destroy(gameObject);
+                Debug.Log(other.gameObject.name);
             }
         }
     }

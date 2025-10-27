@@ -46,6 +46,7 @@ public class EnemyAI : MonoBehaviour
     EnemyData _data;        //적 데이터
     Vector3 _spawnPos;      //스폰될 때의 위치
     bool _isActive = false; //AI 활성화 여부
+    bool _isAttacking = false;  //공격 중인지 아닌지 여부
 
     // 타이머 및 쿨타임 관리 //
     float _lastAttackTime;          //마지막 일반 공격 시간
@@ -255,6 +256,8 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
+        if (_isAttacking) return;
+
         //타겟을 바라보도록 설정
         Vector3 lookDir = _target.position - transform.position;
         lookDir.y = 0f;
@@ -299,10 +302,22 @@ public class EnemyAI : MonoBehaviour
     {
         _lastSpecialAttackTime = Time.time;
 
+        StartCoroutine(AttackRoutine());
+
         _animator.SetTrigger(_hashSpecialAttack);
         _animator.SetInteger(_hashSpecialAttackID, _specialAttack.SpecialAttackAnim);
+    }
 
-        _specialAttack.Execute(transform, _target);
+    /// <summary>
+    /// 애니메이션 이벤트에서 호출할
+    /// 특수 공격 실제 실행 함수
+    /// </summary>
+    public void ExecuteSpecialAttack()
+    {
+        if (_specialAttack != null && _target != null)
+        {
+            _specialAttack.Execute(transform, _target, _basicAttack);
+        }
     }
 
     /// <summary>
@@ -311,25 +326,32 @@ public class EnemyAI : MonoBehaviour
     void PerformBasicAttack()
     {
         _lastAttackTime = Time.time;
-        _animator.SetTrigger(_hashAttack);
 
-        //일반 공격 타입에 따라 공격 함수 실행
-        switch (_basicAttack)
+        StartCoroutine(AttackRoutine());
+
+        _animator.SetTrigger(_hashAttack);
+    }
+
+    /// <summary>
+    /// 애니메이션 이벤트에서 호출할
+    /// 근거리 타격 감지 콜라이더 활성화하는 함수
+    /// </summary>
+    public void PerformMeleeAttack()
+    {
+        if (_meleeDetector != null)
         {
-            case BasicAttackType.Melee:
-                break;
-            case BasicAttackType.Ranged:
-                PerformRangedAttack();
-                break;
-            default:
-                break;
+            _meleeDetector.EnableDetector();
+        }
+        else
+        {
+            Debug.Log("MeleeDetector 없음");
         }
     }
 
     /// <summary>
     /// 원거리 일반 공격 실행 함수
     /// </summary>
-    void PerformRangedAttack()
+    public void PerformRangedAttack()
     {
         if ( _target == null) return;
 
@@ -353,6 +375,19 @@ public class EnemyAI : MonoBehaviour
         {
             projectile.Initialize(_data.ProjectileSpeed, _controller.Atk, _data.AttackRange);
         }
+    }
+
+    IEnumerator AttackRoutine()
+    {
+        _isAttacking = true;
+
+        _agent.isStopped = true;
+        _agent.velocity = Vector3.zero;
+        _agent.ResetPath();
+
+        yield return new WaitForSeconds(2f);
+
+        _isAttacking = false;
     }
 
     /// <summary>
@@ -397,22 +432,6 @@ public class EnemyAI : MonoBehaviour
         return path.status == NavMeshPathStatus.PathComplete;
     }
     #endregion
-
-    /// <summary>
-    /// 애니메이션 이벤트에서 호출할
-    /// 근거리 타격 감지 콜라이더 활성화하는 함수
-    /// </summary>
-    public void EnableMeleeDetector()
-    {
-        if (_meleeDetector != null)
-        {
-            _meleeDetector.EnableDetector();
-        }
-        else
-        {
-            Debug.Log("MeleeDetector 없음");
-        }
-    }
 
     /// <summary>
     /// 피격 시 애니메이션 트리거를 작동하는 함수

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3382015932832715392}
   - component: {fileID: 3715928838962011985}
   - component: {fileID: 892365940633334150}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4856,7 +4856,7 @@ GameObject:
   - component: {fileID: 7789358473880569562}
   - component: {fileID: 4751984456801314672}
   - component: {fileID: 1372558629493139488}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9701,7 +9701,7 @@ GameObject:
   - component: {fileID: 265107612489752394}
   - component: {fileID: 2404215147147724283}
   - component: {fileID: 6689525712765248174}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireDark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14546,7 +14546,7 @@ GameObject:
   - component: {fileID: 3579029283407445718}
   - component: {fileID: 5197776731800611206}
   - component: {fileID: 7144326017230336533}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19392,9 +19392,9 @@ GameObject:
   - component: {fileID: 1830691344157794947}
   - component: {fileID: -6967838134968929556}
   - component: {fileID: 5194914692085178851}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MetalEffect
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
