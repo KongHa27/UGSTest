@@ -11,10 +11,10 @@ public abstract class SpecialAttackBase : ScriptableObject
     [Header("----- 특수 공격 공통 -----")]
     [SerializeField] SpecialAttackType _type;       //특수 공격 타입
     [SerializeField] float _coolTime = 10f;         //특수 공격 쿨타임
-    [SerializeField] protected LayerMask _playerLayerMask;
+    [SerializeField] protected LayerMask _playerLayerMask;  //플레이어 레이어 마스크
 
     [Header("----- 발사체 발사 지점 -----")]
-    [SerializeField] protected Transform _cachedFirePos;
+    [SerializeField] protected Transform _cachedFirePos;    //지정된 firePos
 
     // 프로퍼티 //
     public GameObject EpicEffect => _epicEffect;

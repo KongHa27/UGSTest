@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SpawnData_Melee
   m_EditorClassIdentifier: 
   spawnList:
-  - enemyData: {fileID: 11400000, guid: 51f200b33d887ee4086fa83bbd886732, type: 2}
+  - enemyData: {fileID: 11400000, guid: 5cbf81f068946b94a92ef06256fac18b, type: 2}
     count: 1

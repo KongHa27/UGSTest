@@ -41,7 +41,7 @@ private void HandleMouseInput()
     if (Input.GetMouseButtonDown(0)) HandleLeftClick();
     if (Input.GetMouseButtonDown(1))
     {
-        // ★ 공격 가능 여부 체크
+        //공격 가능 여부 체크
         if (_stateCotroller.CanAttack)
             HandleRightClick();
     }

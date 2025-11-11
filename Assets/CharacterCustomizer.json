@@ -1,0 +1,1984 @@
+{
+    "SavedCharacters": [
+        {
+            "CharacterName": "MyCharacter",
+            "CharacterPrefab": "CCMH_Female",
+            "Blendshapes": [
+                {
+                    "propertyName": "mod_jaw_height",
+                    "stringValue": "",
+                    "floatValue": -0.1356484293937683,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_jaw_width",
+                    "stringValue": "",
+                    "floatValue": -0.06290978193283081,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_underbite",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_chin_size",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_chin_width",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_chin_height",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_eyes_size",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_eyes_height",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_eyes_depth",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_eyes_narrow",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_mouth_size",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_mouth_height",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_mouth_depth",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_nose_size",
+                    "stringValue": "",
+                    "floatValue": 0.013761281967163086,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_nose_height",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_nose_width",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_nose_out",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_brow_height",
+                    "stringValue": "",
+                    "floatValue": -0.003931999206542969,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_brow_depth",
+                    "stringValue": "",
+                    "floatValue": -0.021625220775604249,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_UpperArmScale",
+                    "stringValue": "",
+                    "floatValue": -1.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_LowerArmScale",
+                    "stringValue": "",
+                    "floatValue": -1.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_WaistSize",
+                    "stringValue": "",
+                    "floatValue": -0.47173744440078738,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_TorsoHeight",
+                    "stringValue": "",
+                    "floatValue": 0.05275224894285202,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_ShoulderWidth",
+                    "stringValue": "",
+                    "floatValue": -0.03530162572860718,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_HipWidth",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_LegsWidth",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_ThighScale",
+                    "stringValue": "",
+                    "floatValue": -0.6349936723709106,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_CalfScale",
+                    "stringValue": "",
+                    "floatValue": -1.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_NeckScale",
+                    "stringValue": "",
+                    "floatValue": -0.5719146728515625,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_NeckLength",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_HeadSize",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_01",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_02",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_03",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_04",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_05",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_06",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_07",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_08",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_neck_fat",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_cheeks_size",
+                    "stringValue": "",
+                    "floatValue": 0.001965761184692383,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_cheekbone_size",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_Height",
+                    "stringValue": "",
+                    "floatValue": 0.029488682746887208,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_ButtSize",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                }
+            ],
+            "HairNames": [
+                "Long_01_F",
+                "Eyebrows_02"
+            ],
+            "ApparelNames": [
+                "Shirt_01",
+                "Jeans_01_Black",
+                "Sandals_01",
+                "Headwear_Default"
+            ],
+            "ApparelMaterials": [
+                1,
+                1,
+                2,
+                0
+            ],
+            "FloatProperties": [
+                {
+                    "propertyName": "_Skin_Smoothness",
+                    "stringValue": "",
+                    "floatValue": 0.727064311504364,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "_Freckles_Strength",
+                    "stringValue": "",
+                    "floatValue": 0.33000001311302187,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Make_Up_Opacity",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Wrinkles",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Freckles_Strength",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "_Wrinkles",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "_Make_Up_Offset_X",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Make_Up_Offset_Y",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Make_Up_Scale_X",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Make_Up_Scale_Y",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Make_Up_Rotation",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Make_Up_Tintable",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Tattoo_Offset_X",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                },
+                {
+                    "propertyName": "_Tattoo_Offset_Y",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                },
+                {
+                    "propertyName": "_Tattoo_Scale_X",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                },
+                {
+                    "propertyName": "_Tattoo_Scale_Y",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                },
+                {
+                    "propertyName": "_Tattoo_Rotation",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                },
+                {
+                    "propertyName": "_Tattoo_Tintable",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                }
+            ],
+            "TextureProperties": [
+                {
+                    "propertyName": "_Color_Map",
+                    "stringValue": "T_Skin_Head_01",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Color_Map",
+                    "stringValue": "T_Skin_Body_01",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                },
+                {
+                    "propertyName": "_Make_Up",
+                    "stringValue": "T_Transparent",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Tattoo",
+                    "stringValue": "T_Transparent",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                }
+            ],
+            "ColorProperties": [
+                {
+                    "propertyName": "_Skin_Tint",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.699999988079071,
+                        "g": 0.5600000023841858,
+                        "b": 0.4899999797344208,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "_Eye_Color",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.4117647111415863,
+                        "g": 0.5411764979362488,
+                        "b": 0.6392157077789307,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Lips_Color",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.6313725709915161,
+                        "g": 0.2705882489681244,
+                        "b": 0.2235294133424759,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Hair_Tint",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.22745098173618318,
+                        "g": 0.17551635205745698,
+                        "b": 0.13396863639354707,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "_Make_Up_Tint",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 1.0,
+                        "g": 0.5237959027290344,
+                        "b": 0.8015815019607544,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Skin_Tint",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "_Lips_Color",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.7600342035293579,
+                        "g": 0.3588809370994568,
+                        "b": 0.3588809370994568,
+                        "a": 0.13044700026512147
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "_Eye_Color",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.22641509771347047,
+                        "g": 0.16690275073051454,
+                        "b": 0.12281951308250427,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                }
+            ]
+        },
+        {
+            "CharacterName": "Woman_1",
+            "CharacterPrefab": "CCMH_Female",
+            "Blendshapes": [
+                {
+                    "propertyName": "mod_jaw_height",
+                    "stringValue": "",
+                    "floatValue": 0.29101821780204775,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_jaw_width",
+                    "stringValue": "",
+                    "floatValue": -0.5733334422111511,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_underbite",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_chin_size",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_chin_width",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_chin_height",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_eyes_size",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_eyes_height",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_eyes_depth",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_eyes_narrow",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_mouth_size",
+                    "stringValue": "",
+                    "floatValue": -0.25555551052093508,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_mouth_height",
+                    "stringValue": "",
+                    "floatValue": -0.03968244791030884,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_mouth_depth",
+                    "stringValue": "",
+                    "floatValue": 0.023809432983398439,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_nose_size",
+                    "stringValue": "",
+                    "floatValue": 0.013761281967163086,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_nose_height",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_nose_width",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_nose_out",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_brow_height",
+                    "stringValue": "",
+                    "floatValue": -0.003931999206542969,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_brow_depth",
+                    "stringValue": "",
+                    "floatValue": -0.021625220775604249,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_UpperArmScale",
+                    "stringValue": "",
+                    "floatValue": -1.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_LowerArmScale",
+                    "stringValue": "",
+                    "floatValue": -1.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_WaistSize",
+                    "stringValue": "",
+                    "floatValue": -0.47173744440078738,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_TorsoHeight",
+                    "stringValue": "",
+                    "floatValue": 0.05275224894285202,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_ShoulderWidth",
+                    "stringValue": "",
+                    "floatValue": -0.03530162572860718,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_HipWidth",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_LegsWidth",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_ThighScale",
+                    "stringValue": "",
+                    "floatValue": -0.6349936723709106,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_CalfScale",
+                    "stringValue": "",
+                    "floatValue": -1.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_NeckScale",
+                    "stringValue": "",
+                    "floatValue": -0.5719146728515625,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_NeckLength",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_HeadSize",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_01",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_02",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_03",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_04",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_05",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_06",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_07",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "shp_head_08",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_neck_fat",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_cheeks_size",
+                    "stringValue": "",
+                    "floatValue": 0.001965761184692383,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "mod_cheekbone_size",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_Height",
+                    "stringValue": "",
+                    "floatValue": 0.029488682746887208,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "BodyCustomization_ButtSize",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                }
+            ],
+            "HairNames": [
+                "Long_01_F",
+                "Eyebrows_02"
+            ],
+            "ApparelNames": [
+                "Shirt_01",
+                "Jeans_01_Black",
+                "Sandals_01",
+                "Headwear_Default"
+            ],
+            "ApparelMaterials": [
+                1,
+                1,
+                2,
+                0
+            ],
+            "FloatProperties": [
+                {
+                    "propertyName": "_Skin_Smoothness",
+                    "stringValue": "",
+                    "floatValue": 0.727064311504364,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "_Freckles_Strength",
+                    "stringValue": "",
+                    "floatValue": 0.33000001311302187,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Make_Up_Opacity",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Wrinkles",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Freckles_Strength",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "_Wrinkles",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "_Make_Up_Offset_X",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Make_Up_Offset_Y",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Make_Up_Scale_X",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Make_Up_Scale_Y",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Make_Up_Rotation",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Make_Up_Tintable",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Tattoo_Offset_X",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                },
+                {
+                    "propertyName": "_Tattoo_Offset_Y",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                },
+                {
+                    "propertyName": "_Tattoo_Scale_X",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                },
+                {
+                    "propertyName": "_Tattoo_Scale_Y",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                },
+                {
+                    "propertyName": "_Tattoo_Rotation",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                },
+                {
+                    "propertyName": "_Tattoo_Tintable",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                }
+            ],
+            "TextureProperties": [
+                {
+                    "propertyName": "_Color_Map",
+                    "stringValue": "T_Skin_Head_01",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Color_Map",
+                    "stringValue": "T_Skin_Body_01",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                },
+                {
+                    "propertyName": "_Make_Up",
+                    "stringValue": "T_Transparent",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Tattoo",
+                    "stringValue": "T_Transparent",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 1.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Body"
+                }
+            ],
+            "ColorProperties": [
+                {
+                    "propertyName": "_Skin_Tint",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.699999988079071,
+                        "g": 0.5600000023841858,
+                        "b": 0.4899999797344208,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "_Eye_Color",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.4117647111415863,
+                        "g": 0.5411764979362488,
+                        "b": 0.6392157077789307,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Lips_Color",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.6313725709915161,
+                        "g": 0.2705882489681244,
+                        "b": 0.2235294133424759,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Hair_Tint",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.22745098173618318,
+                        "g": 0.17551635205745698,
+                        "b": 0.13396863639354707,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "_Make_Up_Tint",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 1.0,
+                        "g": 0.5237959027290344,
+                        "b": 0.8015815019607544,
+                        "a": 0.0
+                    },
+                    "materialIndex": 0,
+                    "meshTag": "Head"
+                },
+                {
+                    "propertyName": "_Skin_Tint",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0,
+                        "a": 0.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "_Lips_Color",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.7600342035293579,
+                        "g": 0.4602186977863312,
+                        "b": 0.4602186977863312,
+                        "a": 0.5368057489395142
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                },
+                {
+                    "propertyName": "_Eye_Color",
+                    "stringValue": "",
+                    "floatValue": 0.0,
+                    "colorValue": {
+                        "r": 0.22641509771347047,
+                        "g": 0.16690275073051454,
+                        "b": 0.12281951308250427,
+                        "a": 1.0
+                    },
+                    "materialIndex": -1,
+                    "meshTag": ""
+                }
+            ]
+        }
+    ]
+}

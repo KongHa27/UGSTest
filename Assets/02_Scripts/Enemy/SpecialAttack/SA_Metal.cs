@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using NUnit.Framework.Constraints;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SA_Metal", menuName = "Enemy/Special Attacks/Metal")]
